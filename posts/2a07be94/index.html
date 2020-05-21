@@ -6,7 +6,7 @@
     
     
     
-    <title>CF1220D Alex and Julian | lzy&#39;s space</title>
+    <title>CF1178D Prime Graph | lzy&#39;s space</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
@@ -39,15 +39,15 @@
 
 
     
-    <meta name="description" content="前置知识：二分图的判定没有奇环 做法考虑从0开始，$lcm(a,b)$构成的环为奇环  \frac { lcm(a,b)} { a }+\frac{ lcm ( a,b ) } { b}   \equiv 1(mod 2)有  \frac{a+b}{gcd(a,b)} \equiv 1(mod  2)当且仅当a,b中2的因子个数相等时，ab无法构成奇环，这种情况下$\frac{a}{gcd(a,b">
+    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738&#x2F;*显然1000以内，n到3&#x2F;2n中肯定有一个质数（没有证明，但是可以枚举试试 所以 先把n个点连成环，在中间两点之间加边，每个点的度为2或3，控制边数是个质数就可以 *&#x2F;#include&lt;bits&#x2F;stdc++.h&gt;using namespace st">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CF1220D Alex and Julian">
-<meta property="og:url" content="http://lzylzy.cf/posts/ed89373b/index.html">
+<meta property="og:title" content="CF1178D Prime Graph">
+<meta property="og:url" content="http://lzylzy.cf/posts/2a07be94/index.html">
 <meta property="og:site_name" content="lzy&#39;s space">
-<meta property="og:description" content="前置知识：二分图的判定没有奇环 做法考虑从0开始，$lcm(a,b)$构成的环为奇环  \frac { lcm(a,b)} { a }+\frac{ lcm ( a,b ) } { b}   \equiv 1(mod 2)有  \frac{a+b}{gcd(a,b)} \equiv 1(mod  2)当且仅当a,b中2的因子个数相等时，ab无法构成奇环，这种情况下$\frac{a}{gcd(a,b">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738&#x2F;*显然1000以内，n到3&#x2F;2n中肯定有一个质数（没有证明，但是可以枚举试试 所以 先把n个点连成环，在中间两点之间加边，每个点的度为2或3，控制边数是个质数就可以 *&#x2F;#include&lt;bits&#x2F;stdc++.h&gt;using namespace st">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-19T12:49:46.000Z">
-<meta property="article:modified_time" content="2020-05-19T13:37:25.360Z">
+<meta property="article:published_time" content="2020-05-21T13:38:00.000Z">
+<meta property="article:modified_time" content="2020-05-21T13:38:25.095Z">
 <meta property="article:author" content="lzy">
 <meta name="twitter:card" content="summary">
     
@@ -151,7 +151,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">CF1220D Alex and Julian</div>
+        <div class="flex-col header-title ellipsis">CF1178D Prime Graph</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -188,22 +188,15 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前置知识：二分图的判定"><span class="post-toc-number">1.</span> <span class="post-toc-text">前置知识：二分图的判定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#做法"><span class="post-toc-number">2.</span> <span class="post-toc-text">做法</span></a></li></ol>
-        </nav>
-    </aside>
-   
-<article id="post-CF1220D Alex and Julian"
+<article id="post-CF1178D Prime Graph"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">CF1220D Alex and Julian</h1>
+        <h1 class="post-card-title">CF1178D Prime Graph</h1>
         <div class="post-meta">
             <i class="icon icon-lg icon-calendar-o"></i>
             发表于
-            <time class="post-time" title="2020-05-19 20:49:46" datetime="2020-05-19T12:49:46.000Z"  itemprop="datePublished">2020-05-19</time>
+            <time class="post-time" title="2020-05-21 21:38:00" datetime="2020-05-21T13:38:00.000Z"  itemprop="datePublished">2020-05-21</time>
 
             <br id="mybreak"/>
             
@@ -222,20 +215,10 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">2</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">1</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="前置知识：二分图的判定"><a href="#前置知识：二分图的判定" class="headerlink" title="前置知识：二分图的判定"></a>前置知识：二分图的判定</h2><p>没有奇环</p>
-<h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>考虑从0开始，$lcm(a,b)$构成的环为奇环</p>
-<script type="math/tex; mode=display">
-\frac { lcm(a,b)} { a }+\frac{ lcm ( a,b ) } { b}   \equiv 1(mod 2)</script><p>有</p>
-<script type="math/tex; mode=display">
-\frac{a+b}{gcd(a,b)} \equiv 1(mod  2)</script><p>当且仅当a,b中2的因子个数相等时，ab无法构成奇环，这种情况下$\frac{a}{gcd(a,b)}$和$\frac{b}{gcd(a,b)}$都是奇数</p>
-<p><strong>（本句话引自lg大佬，不会可以手动验证，好好想，蒟蒻数学这么差都想通了，画画图）</strong></p>
-<p>也就是说，对于任意两个数字，如果他们的lowbit相等，他们不会构成奇环</p>
-<p>于是问题变成了 求n个数中lowbit相等的数字最多有多少个</p>
-<p>code:</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x7fffffff</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200009</span></span><br><span class="line">ll a[maxn]; </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;(-x))</span></span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; num[<span class="number">69</span>];</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a[i]);</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//两个数lowbit相同就可以保留 </span></span><br><span class="line">	<span class="comment">//直接枚举lowbit？</span></span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>,w;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">60</span>;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> s=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="comment">//cout&lt;&lt;lowbit(a[j])&lt;&lt;" "&lt;&lt;(1&lt;&lt;i)&lt;&lt;endl;</span></span><br><span class="line">			<span class="keyword">if</span>(lowbit(a[j])==(<span class="number">1l</span>l&lt;&lt;i))</span><br><span class="line">			{</span><br><span class="line">				s++;</span><br><span class="line">			}<span class="keyword">else</span></span><br><span class="line">			{</span><br><span class="line">				num[i].push_back(a[j]);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(s&gt;ans)</span><br><span class="line">		{</span><br><span class="line">			w=i,ans=s;</span><br><span class="line">		}</span><br><span class="line">	 } </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-ans);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num[w].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,num[w][i]);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+            <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">显然1000以内，n到3/2n中肯定有一个质数（没有证明，但是可以枚举试试 </span></span><br><span class="line"><span class="comment">所以 先把n个点连成环，在中间两点之间加边，每个点的度为2或3，控制边数是个质数就可以 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x7fffffff</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(x);i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(x%i==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> m=n;</span><br><span class="line">	<span class="keyword">while</span>(!Prime(m))</span><br><span class="line">	{</span><br><span class="line">		m++;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;m&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> x=i+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(x&gt;n)x=<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m-n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>&lt;&lt;n/<span class="number">2</span>+i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -261,12 +244,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新：<time datetime="2020-05-19T13:37:25.360Z" itemprop="dateUpdated">2020-05-19 21:37:25</time>
+    最后更新：<time datetime="2020-05-21T13:38:25.095Z" itemprop="dateUpdated">2020-05-21 21:38:25</time>
 </span>
 
 
         
-        原文链接：<a href="/posts/ed89373b/" target="_blank" rel="external">http://lzylzy.cf/posts/ed89373b/</a>
+        原文链接：<a href="/posts/2a07be94/" target="_blank" rel="external">http://lzylzy.cf/posts/2a07be94/</a>
         
     </div>
     <footer>
@@ -290,7 +273,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lzylzy.cf/posts/ed89373b/&title=《CF1220D Alex and Julian》 — lzy's space&pic=http://lzylzy.cf/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lzylzy.cf/posts/2a07be94/&title=《CF1178D Prime Graph》 — lzy's space&pic=http://lzylzy.cf/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -300,22 +283,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lzylzy.cf/posts/ed89373b/&title=《CF1220D Alex and Julian》 — lzy's space&source=Ҳ����������" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lzylzy.cf/posts/2a07be94/&title=《CF1178D Prime Graph》 — lzy's space&source=Ҳ����������" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lzylzy.cf/posts/ed89373b/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lzylzy.cf/posts/2a07be94/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CF1220D Alex and Julian》 — lzy's space&url=http://lzylzy.cf/posts/ed89373b/&via=http://lzylzy.cf" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CF1178D Prime Graph》 — lzy's space&url=http://lzylzy.cf/posts/2a07be94/&via=http://lzylzy.cf" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lzylzy.cf/posts/ed89373b/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lzylzy.cf/posts/2a07be94/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -335,21 +318,13 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/posts/2a07be94/" id="post-prev" class="post-nav-link">
-        <h4 class="title" >
-          上一篇：CF1178D Prime Graph
-        </h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/5f2781ba/" id="post-next" class="post-nav-link">
-        <h4 class="title" data-hover="下一篇：P6275 [USACO20OPEN]Sprinklers 2: Return of the Alfalfa P ">下一篇：P6275 [USACO20OPEN]Sprinklers 2: Return of the Alfalfa P </h4>
+      <a href="/posts/ed89373b/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：CF1220D Alex and Julian">下一篇：CF1220D Alex and Julian</h4>
       </a>
     </div>
   
@@ -422,7 +397,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lzylzy.cf/posts/ed89373b/&title=《CF1220D Alex and Julian》 — lzy's space&pic=http://lzylzy.cf/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lzylzy.cf/posts/2a07be94/&title=《CF1178D Prime Graph》 — lzy's space&pic=http://lzylzy.cf/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -432,22 +407,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lzylzy.cf/posts/ed89373b/&title=《CF1220D Alex and Julian》 — lzy's space&source=Ҳ����������" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lzylzy.cf/posts/2a07be94/&title=《CF1178D Prime Graph》 — lzy's space&source=Ҳ����������" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lzylzy.cf/posts/ed89373b/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lzylzy.cf/posts/2a07be94/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CF1220D Alex and Julian》 — lzy's space&url=http://lzylzy.cf/posts/ed89373b/&via=http://lzylzy.cf" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CF1178D Prime Graph》 — lzy's space&url=http://lzylzy.cf/posts/2a07be94/&via=http://lzylzy.cf" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lzylzy.cf/posts/ed89373b/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lzylzy.cf/posts/2a07be94/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -458,7 +433,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p class="wechatshare">扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aUa6DMAwEQO5/ad4B2tK1TcKrNPmqqgJTPqx4neOI1/lhJVdd3+1YsXBxccfc83IlD8jpr/fMDbi4uPu514jX31w/+BMioX+x4eLi/mNusmXJibi4uL/OPYN11+vAxcV9lps0P3nYka+FvRouLu6Am6eU6z4vyXdxcXFb3F7R6QUl1eL15ipcXNwt3N4gJN/i5KOUQuCCi4u7hZuHntUjFL3RbNT84OLiLuMmIcj1dqQ6aJlEKri4uHu41eZkcvyil2+8eR24uLhbuL0jF8mWZRKmRBspXFzcBdxqxJnEHNVWp/DKcHFxH+VOgtTeMY5ok4SLi7uFWw1BemOSagmLejVcXNxHub2ic1c8Wi5kuLi4N3GrzU8eaE5ClnJUiouLeyt30qjkQ9bqX/1Sd3Fxcbdw8wuSxydbn3x7hIuL+xQ3L0/5pmcSwh6F2oaLi3sn9yyuHF2NWaPWCBcXdwu3Gk9UH1xtivIii4uLu5o7OTZRbXiqr+BL84OLi7uYWy00eSAyb35wcXF/hTsJVXtjFVxc3F/h5tFG3m81Jz+4uLgLuNUhaF6k5oNVXFzc/dy8uOQhSG+gm3+Pi4u7jPsHU2yaeaZGnNoAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aS27DMAwFQN//0u4B0ip8pCUYxWhVpI017oLg77rK5/44n7/961vrp107Di4u7ph7L0/9b+q3fL5M8HxcXNyD3HUYWj96/a31y8ehEBcX9/XcdcpSeRlcXNz/yp18jouL+2ZupfhJexRr+vZaDRcX9/k+xpWmJpOft/R3cXFxW9w7PGnjI22vfLkdFxf3CLceUNLEpVICpffi4uKe506u6a1Z1Auq5n8OFxe3xU2HJb3lqsfaK7i4uC/g1tOXyfpFUG7h4uIe5KatjTQ96i1k/BIucXFxj3MnyU1aPjVTIlxc3CPcdBySNkwnI5a4YYqLi/soNxhjjFc0egMbXFzcN3AroSoNYZPAh4uLe55bp8wHJFd44uIHFxd3A3cd7ZplySB9+RLIcHFxN3MrI9VeIyNNZb68Ei4u7kFuCk3DXD3wlSozXFzcbdw7PGkSkzZHrskFuLi4u7oQwVilt7oxaazg4uKe5E7WJiqpSS+QPVz84OLitriTQFOJkZPiBxcX9/3c9XJGvbAZ7Yvh4uK+jBv0Ysfj2I1xFxcX96GpZS/kzQeruLi457n14DIvctZNkPrnuLi427g/H9txsC2eM4EAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
