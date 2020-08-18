@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://lzylzy.cf/"/>
-  <updated>2020-08-17T01:55:44.346Z</updated>
-  <id>http://lzylzy.cf/</id>
+  <link href="https://lzylzy.cf/"/>
+  <updated>2020-08-18T05:13:54.379Z</updated>
+  <id>https://lzylzy.cf/</id>
   
   <author>
     <name>lzy</name>
@@ -17,9 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>P2172 [国家集训队]部落战争</title>
+    <link href="https://lzylzy.cf/2020/08/18/P2172-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E9%83%A8%E8%90%BD%E6%88%98%E4%BA%89/"/>
+    <id>https://lzylzy.cf/2020/08/18/P2172-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E9%83%A8%E8%90%BD%E6%88%98%E4%BA%89/</id>
+    <published>2020-08-18T04:06:52.000Z</published>
+    <updated>2020-08-18T05:13:54.379Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="二分图的最小边覆盖"><a href="#二分图的最小边覆盖" class="headerlink" title="二分图的最小边覆盖"></a>二分图的最小边覆盖</h3><h4 id="定义：用最少的边覆盖整个子图的边的数量"><a href="#定义：用最少的边覆盖整个子图的边的数量" class="headerlink" title="定义：用最少的边覆盖整个子图的边的数量"></a>定义：用最少的边覆盖整个子图的边的数量</h4><h4 id="求法：n-最大匹配"><a href="#求法：n-最大匹配" class="headerlink" title="求法：n-最大匹配"></a>求法：n-最大匹配</h4><h3 id="本题具体做法"><a href="#本题具体做法" class="headerlink" title="本题具体做法"></a>本题具体做法</h3><p>每个点拆为两个点，入点和出点</p><p>入点出点<strong>不连边</strong>，<strong>入点</strong>向能到达的所有点的<strong>出点</strong>连边</p><p>所有入点连向源点，所有出点连向汇点</p><p>发现这是一个二分图</p><p>为什么入点出点不连边？</p><p><strong>入点连向了源点，出点连向了汇点，再把入点出点连起来就全通了</strong></p><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100069 </span></span><br><span class="line"><span class="keyword">int</span> d[maxn];</span><br><span class="line"><span class="keyword">int</span> m,n,r,c;</span><br><span class="line"><span class="keyword">int</span> S,T;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line"><span class="keyword">int</span> to;</span><br><span class="line"><span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">int</span> rev;</span><br><span class="line">};</span><br><span class="line"><span class="built_in">vector</span>&lt;node&gt; e[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">e[x].push_back((node){y,v,e[y].size()});</span><br><span class="line">e[y].push_back((node){x,<span class="number">0</span>,e[x].size()<span class="number">-1</span>});</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="built_in">memset</span>(d,<span class="number">-1</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">d[S]=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">q.push(S);</span><br><span class="line"><span class="keyword">while</span>(!q.empty())</span><br><span class="line">{</span><br><span class="line"><span class="keyword">int</span> x=q.front();</span><br><span class="line">q.pop();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;e[x].size();i++)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">int</span> to=e[x][i].to;</span><br><span class="line"><span class="keyword">if</span>(d[to]==<span class="number">-1</span>&amp;&amp;e[x][i].val)</span><br><span class="line">{</span><br><span class="line">d[to]=d[x]+<span class="number">1</span>;</span><br><span class="line">q.push(to);</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span>(d[T]==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> low)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="keyword">if</span>(x==T||low==<span class="number">0</span>)<span class="keyword">return</span> low;</span><br><span class="line"><span class="keyword">int</span> totflow=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;e[x].size();i++)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">int</span> y=e[x][i].to;</span><br><span class="line"><span class="keyword">int</span> rev=e[x][i].rev;</span><br><span class="line"><span class="keyword">if</span>(d[y]==d[x]+<span class="number">1</span>&amp;&amp;e[x][i].val)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">int</span> a=dfs(y,min(e[x][i].val,low));</span><br><span class="line">e[x][i].val-=a;</span><br><span class="line">e[y][rev].val+=a;</span><br><span class="line">low-=a;</span><br><span class="line">totflow+=a;;</span><br><span class="line"><span class="keyword">if</span>(low==<span class="number">0</span>)<span class="keyword">return</span> totflow;</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span>(low!=<span class="number">0</span>)</span><br><span class="line">{</span><br><span class="line">d[x]=<span class="number">-1</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">return</span> totflow;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="keyword">while</span>(bfs())</span><br><span class="line">{</span><br><span class="line">ans+=dfs(S,inf);</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;r,&amp;c);</span><br><span class="line"><span class="keyword">char</span> ch[<span class="number">99</span>][<span class="number">99</span>];</span><br><span class="line"><span class="keyword">int</span> gox[<span class="number">4</span>]={r,c,r,c};</span><br><span class="line"><span class="keyword">int</span> goy[<span class="number">4</span>]={c,r,-c,-r};</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">{</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch[i]+<span class="number">1</span>);</span><br><span class="line">}</span><br><span class="line">S=<span class="number">0</span>,T=n*m+n*m+m+<span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">if</span>(ch[i][j]==<span class="string">'.'</span>)<span class="comment">//这是一个正常的点 </span></span><br><span class="line">{</span><br><span class="line">add(S,i*m+j,<span class="number">1</span>);<span class="comment">//源点到入点 </span></span><br><span class="line">add(i*m+j+n*m,T,<span class="number">1</span>);<span class="comment">//出点到汇点 </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++)</span><br><span class="line">{</span><br><span class="line"><span class="keyword">int</span> ni=i+gox[k];</span><br><span class="line"><span class="keyword">int</span> nj=j+goy[k];</span><br><span class="line"><span class="keyword">if</span>(ni&gt;<span class="number">0</span>&amp;&amp;nj&gt;<span class="number">0</span>&amp;&amp;nj&lt;=m&amp;&amp;ni&lt;=n&amp;&amp;ch[ni][nj]==<span class="string">'.'</span>)</span><br><span class="line">{</span><br><span class="line">add(i*m+j,ni*m+nj+n*m,inf);<span class="comment">//入点到其他出点 </span></span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line">}<span class="keyword">else</span> sum++;</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(bfs())</span><br><span class="line">{</span><br><span class="line">ans+=dfs(S,inf);</span><br><span class="line">}</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n*m-ans-sum);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;二分图的最小边覆盖&quot;&gt;&lt;a href=&quot;#二分图的最小边覆盖&quot; class=&quot;headerlink&quot; title=&quot;二分图的最小边覆盖&quot;&gt;&lt;/a&gt;二分图的最小边覆盖&lt;/h3&gt;&lt;h4 id=&quot;定义：用最少的边覆盖整个子图的边的数量&quot;&gt;&lt;a href=&quot;#定义：用最少
+      
+    
+    </summary>
+    
+    
+    
+      <category term="OI 网络流" scheme="https://lzylzy.cf/tags/OI-%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>几个在线画图工具</title>
-    <link href="http://lzylzy.cf/posts/d92d95d1/"/>
-    <id>http://lzylzy.cf/posts/d92d95d1/</id>
+    <link href="https://lzylzy.cf/2020/08/16/%E5%87%A0%E4%B8%AA%E5%9C%A8%E7%BA%BF%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/"/>
+    <id>https://lzylzy.cf/2020/08/16/%E5%87%A0%E4%B8%AA%E5%9C%A8%E7%BA%BF%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/</id>
     <published>2020-08-16T09:39:55.000Z</published>
     <updated>2020-08-17T01:55:44.346Z</updated>
     
@@ -37,14 +61,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>NOIP 2018 提高组初赛试题 题目-答案-简要解析</title>
-    <link href="http://lzylzy.cf/posts/dadba983/"/>
-    <id>http://lzylzy.cf/posts/dadba983/</id>
+    <link href="https://lzylzy.cf/2020/08/16/NOIP%202018%20%E6%8F%90%E9%AB%98%E7%BB%84%E5%88%9D%E8%B5%9B%E8%AF%95%E9%A2%98%20%E9%A2%98%E7%9B%AE-%E7%AD%94%E6%A1%88-%E7%AE%80%E8%A6%81%E8%A7%A3%E6%9E%90/"/>
+    <id>https://lzylzy.cf/2020/08/16/NOIP%202018%20%E6%8F%90%E9%AB%98%E7%BB%84%E5%88%9D%E8%B5%9B%E8%AF%95%E9%A2%98%20%E9%A2%98%E7%9B%AE-%E7%AD%94%E6%A1%88-%E7%AE%80%E8%A6%81%E8%A7%A3%E6%9E%90/</id>
     <published>2020-08-16T09:33:51.000Z</published>
     <updated>2020-08-17T01:55:44.344Z</updated>
     
@@ -61,14 +85,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>如何手动开大系统栈?</title>
-    <link href="http://lzylzy.cf/posts/a4454329/"/>
-    <id>http://lzylzy.cf/posts/a4454329/</id>
+    <link href="https://lzylzy.cf/2020/08/16/%E5%A6%82%E4%BD%95%E6%89%8B%E5%8A%A8%E5%BC%80%E5%A4%A7%E7%B3%BB%E7%BB%9F%E6%A0%88/"/>
+    <id>https://lzylzy.cf/2020/08/16/%E5%A6%82%E4%BD%95%E6%89%8B%E5%8A%A8%E5%BC%80%E5%A4%A7%E7%B3%BB%E7%BB%9F%E6%A0%88/</id>
     <published>2020-08-16T09:32:23.000Z</published>
     <updated>2020-08-17T01:55:44.356Z</updated>
     
@@ -87,14 +111,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>安装完Dev-c++如何设置?Dev-c++神奇配置指北</title>
-    <link href="http://lzylzy.cf/posts/d537899/"/>
-    <id>http://lzylzy.cf/posts/d537899/</id>
+    <link href="https://lzylzy.cf/2020/08/16/%E5%AE%89%E8%A3%85%E5%AE%8CDev-c++%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Dev-c++%E7%A5%9E%E5%A5%87%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/"/>
+    <id>https://lzylzy.cf/2020/08/16/%E5%AE%89%E8%A3%85%E5%AE%8CDev-c++%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Dev-c++%E7%A5%9E%E5%A5%87%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8C%97/</id>
     <published>2020-08-16T09:29:21.000Z</published>
     <updated>2020-08-17T01:55:44.358Z</updated>
     
@@ -112,14 +136,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P2290 [HNOI2004]树的计数</title>
-    <link href="http://lzylzy.cf/posts/2bc1a32b/"/>
-    <id>http://lzylzy.cf/posts/2bc1a32b/</id>
+    <link href="https://lzylzy.cf/2020/07/28/P2290-HNOI2004-%E6%A0%91%E7%9A%84%E8%AE%A1%E6%95%B0/"/>
+    <id>https://lzylzy.cf/2020/07/28/P2290-HNOI2004-%E6%A0%91%E7%9A%84%E8%AE%A1%E6%95%B0/</id>
     <published>2020-07-28T09:45:04.000Z</published>
     <updated>2020-07-28T09:55:32.395Z</updated>
     
@@ -146,14 +170,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P6004 [USACO20JAN]Wormhole Sort S</title>
-    <link href="http://lzylzy.cf/posts/f5582704/"/>
-    <id>http://lzylzy.cf/posts/f5582704/</id>
+    <link href="https://lzylzy.cf/2020/07/28/P6004-USACO20JAN-Wormhole-Sort-S/"/>
+    <id>https://lzylzy.cf/2020/07/28/P6004-USACO20JAN-Wormhole-Sort-S/</id>
     <published>2020-07-28T09:41:14.000Z</published>
     <updated>2020-07-28T09:55:32.398Z</updated>
     
@@ -172,14 +196,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1334 瑞瑞的木板</title>
-    <link href="http://lzylzy.cf/posts/3b455b9e/"/>
-    <id>http://lzylzy.cf/posts/3b455b9e/</id>
+    <link href="https://lzylzy.cf/2020/07/28/P1334-%E7%91%9E%E7%91%9E%E7%9A%84%E6%9C%A8%E6%9D%BF/"/>
+    <id>https://lzylzy.cf/2020/07/28/P1334-%E7%91%9E%E7%91%9E%E7%9A%84%E6%9C%A8%E6%9D%BF/</id>
     <published>2020-07-28T09:35:08.000Z</published>
     <updated>2020-07-28T09:55:32.393Z</updated>
     
@@ -199,14 +223,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1194 买礼物</title>
-    <link href="http://lzylzy.cf/posts/55a00e88/"/>
-    <id>http://lzylzy.cf/posts/55a00e88/</id>
+    <link href="https://lzylzy.cf/2020/07/28/P1194-%E4%B9%B0%E7%A4%BC%E7%89%A9/"/>
+    <id>https://lzylzy.cf/2020/07/28/P1194-%E4%B9%B0%E7%A4%BC%E7%89%A9/</id>
     <published>2020-07-28T09:31:57.000Z</published>
     <updated>2020-07-28T09:55:32.390Z</updated>
     
@@ -226,14 +250,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P6033 合并果子 加强版</title>
-    <link href="http://lzylzy.cf/posts/e0bcdb1b/"/>
-    <id>http://lzylzy.cf/posts/e0bcdb1b/</id>
+    <link href="https://lzylzy.cf/2020/07/28/P6033-%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90-%E5%8A%A0%E5%BC%BA%E7%89%88/"/>
+    <id>https://lzylzy.cf/2020/07/28/P6033-%E5%90%88%E5%B9%B6%E6%9E%9C%E5%AD%90-%E5%8A%A0%E5%BC%BA%E7%89%88/</id>
     <published>2020-07-28T09:28:06.000Z</published>
     <updated>2020-07-28T09:55:32.400Z</updated>
     
@@ -254,14 +278,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1241 括号序列</title>
-    <link href="http://lzylzy.cf/posts/3c1d2f82/"/>
-    <id>http://lzylzy.cf/posts/3c1d2f82/</id>
+    <link href="https://lzylzy.cf/2020/07/24/P1241-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97/"/>
+    <id>https://lzylzy.cf/2020/07/24/P1241-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97/</id>
     <published>2020-07-24T04:08:52.000Z</published>
     <updated>2020-07-24T04:11:55.072Z</updated>
     
@@ -279,14 +303,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P4913 【深基16.例3】二叉树深度</title>
-    <link href="http://lzylzy.cf/posts/32e85e5a/"/>
-    <id>http://lzylzy.cf/posts/32e85e5a/</id>
+    <link href="https://lzylzy.cf/2020/07/16/P4913-%E3%80%90%E6%B7%B1%E5%9F%BA16-%E4%BE%8B3%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6/"/>
+    <id>https://lzylzy.cf/2020/07/16/P4913-%E3%80%90%E6%B7%B1%E5%9F%BA16-%E4%BE%8B3%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6/</id>
     <published>2020-07-16T12:36:23.000Z</published>
     <updated>2020-07-16T12:37:35.177Z</updated>
     
@@ -304,14 +328,14 @@
     
     
     
-      <category term="code" scheme="http://lzylzy.cf/tags/code/"/>
+      <category term="code" scheme="https://lzylzy.cf/tags/code/"/>
     
   </entry>
   
   <entry>
     <title>P1102 A-B 数对</title>
-    <link href="http://lzylzy.cf/posts/48d1c4ef/"/>
-    <id>http://lzylzy.cf/posts/48d1c4ef/</id>
+    <link href="https://lzylzy.cf/2020/07/16/P1102-A-B-%E6%95%B0%E5%AF%B9/"/>
+    <id>https://lzylzy.cf/2020/07/16/P1102-A-B-%E6%95%B0%E5%AF%B9/</id>
     <published>2020-07-16T12:35:07.000Z</published>
     <updated>2020-07-24T04:10:14.934Z</updated>
     
@@ -328,14 +352,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1918 保龄球 </title>
-    <link href="http://lzylzy.cf/posts/68dc17be/"/>
-    <id>http://lzylzy.cf/posts/68dc17be/</id>
+    <link href="https://lzylzy.cf/2020/07/16/P1918-%E4%BF%9D%E9%BE%84%E7%90%83/"/>
+    <id>https://lzylzy.cf/2020/07/16/P1918-%E4%BF%9D%E9%BE%84%E7%90%83/</id>
     <published>2020-07-16T12:32:39.000Z</published>
     <updated>2020-07-24T04:10:23.843Z</updated>
     
@@ -356,14 +380,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1030 求先序排列</title>
-    <link href="http://lzylzy.cf/posts/39eaac2a/"/>
-    <id>http://lzylzy.cf/posts/39eaac2a/</id>
+    <link href="https://lzylzy.cf/2020/07/16/P1030-%E6%B1%82%E5%85%88%E5%BA%8F%E6%8E%92%E5%88%97/"/>
+    <id>https://lzylzy.cf/2020/07/16/P1030-%E6%B1%82%E5%85%88%E5%BA%8F%E6%8E%92%E5%88%97/</id>
     <published>2020-07-16T12:29:39.000Z</published>
     <updated>2020-07-24T04:10:07.800Z</updated>
     
@@ -381,14 +405,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1347 排序</title>
-    <link href="http://lzylzy.cf/posts/b60d629/"/>
-    <id>http://lzylzy.cf/posts/b60d629/</id>
+    <link href="https://lzylzy.cf/2020/07/14/P1347-%E6%8E%92%E5%BA%8F/"/>
+    <id>https://lzylzy.cf/2020/07/14/P1347-%E6%8E%92%E5%BA%8F/</id>
     <published>2020-07-14T11:29:39.000Z</published>
     <updated>2020-07-14T11:32:15.793Z</updated>
     
@@ -413,8 +437,8 @@
   
   <entry>
     <title>P1127 词链</title>
-    <link href="http://lzylzy.cf/posts/aedc3926/"/>
-    <id>http://lzylzy.cf/posts/aedc3926/</id>
+    <link href="https://lzylzy.cf/2020/07/13/P1127-%E8%AF%8D%E9%93%BE/"/>
+    <id>https://lzylzy.cf/2020/07/13/P1127-%E8%AF%8D%E9%93%BE/</id>
     <published>2020-07-13T10:32:41.000Z</published>
     <updated>2020-07-24T04:11:18.903Z</updated>
     
@@ -431,14 +455,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1801 黑匣子</title>
-    <link href="http://lzylzy.cf/posts/fd017f76/"/>
-    <id>http://lzylzy.cf/posts/fd017f76/</id>
+    <link href="https://lzylzy.cf/2020/07/12/P1801-%E9%BB%91%E5%8C%A3%E5%AD%90/"/>
+    <id>https://lzylzy.cf/2020/07/12/P1801-%E9%BB%91%E5%8C%A3%E5%AD%90/</id>
     <published>2020-07-12T07:00:02.000Z</published>
     <updated>2020-07-24T04:11:02.795Z</updated>
     
@@ -458,14 +482,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>myx</title>
-    <link href="http://lzylzy.cf/posts/1f6dbad0/"/>
-    <id>http://lzylzy.cf/posts/1f6dbad0/</id>
+    <link href="https://lzylzy.cf/2020/07/10/myx/"/>
+    <id>https://lzylzy.cf/2020/07/10/myx/</id>
     <published>2020-07-10T09:22:08.000Z</published>
     <updated>2020-07-27T12:54:27.819Z</updated>
     
@@ -492,8 +516,8 @@
   
   <entry>
     <title>P1621 集合</title>
-    <link href="http://lzylzy.cf/posts/2f1e5e04/"/>
-    <id>http://lzylzy.cf/posts/2f1e5e04/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P1621-%E9%9B%86%E5%90%88/"/>
+    <id>https://lzylzy.cf/2020/06/21/P1621-%E9%9B%86%E5%90%88/</id>
     <published>2020-06-21T10:58:12.000Z</published>
     <updated>2020-07-24T04:10:46.241Z</updated>
     
@@ -511,14 +535,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P3613 【深基15.例2】寄包柜</title>
-    <link href="http://lzylzy.cf/posts/5d1bcc2a/"/>
-    <id>http://lzylzy.cf/posts/5d1bcc2a/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P3613-%E3%80%90%E6%B7%B1%E5%9F%BA15-%E4%BE%8B2%E3%80%91%E5%AF%84%E5%8C%85%E6%9F%9C/"/>
+    <id>https://lzylzy.cf/2020/06/21/P3613-%E3%80%90%E6%B7%B1%E5%9F%BA15-%E4%BE%8B2%E3%80%91%E5%AF%84%E5%8C%85%E6%9F%9C/</id>
     <published>2020-06-21T10:57:21.000Z</published>
     <updated>2020-06-21T10:59:52.793Z</updated>
     
@@ -539,8 +563,8 @@
   
   <entry>
     <title>P4715 【深基16.例1】淘汰赛</title>
-    <link href="http://lzylzy.cf/posts/27fe52af/"/>
-    <id>http://lzylzy.cf/posts/27fe52af/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P4715-%E3%80%90%E6%B7%B1%E5%9F%BA16-%E4%BE%8B1%E3%80%91%E6%B7%98%E6%B1%B0%E8%B5%9B/"/>
+    <id>https://lzylzy.cf/2020/06/21/P4715-%E3%80%90%E6%B7%B1%E5%9F%BA16-%E4%BE%8B1%E3%80%91%E6%B7%98%E6%B1%B0%E8%B5%9B/</id>
     <published>2020-06-21T10:56:09.000Z</published>
     <updated>2020-06-21T10:59:52.797Z</updated>
     
@@ -561,8 +585,8 @@
   
   <entry>
     <title>P3884 [JLOI2009]二叉树问题</title>
-    <link href="http://lzylzy.cf/posts/13a5bcc7/"/>
-    <id>http://lzylzy.cf/posts/13a5bcc7/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P3884-JLOI2009-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%97%AE%E9%A2%98/"/>
+    <id>https://lzylzy.cf/2020/06/21/P3884-JLOI2009-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%97%AE%E9%A2%98/</id>
     <published>2020-06-21T10:55:20.000Z</published>
     <updated>2020-07-24T04:10:54.012Z</updated>
     
@@ -579,14 +603,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P1364 医院设置</title>
-    <link href="http://lzylzy.cf/posts/d3586754/"/>
-    <id>http://lzylzy.cf/posts/d3586754/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P1364-%E5%8C%BB%E9%99%A2%E8%AE%BE%E7%BD%AE/"/>
+    <id>https://lzylzy.cf/2020/06/21/P1364-%E5%8C%BB%E9%99%A2%E8%AE%BE%E7%BD%AE/</id>
     <published>2020-06-21T10:54:30.000Z</published>
     <updated>2020-06-21T10:59:52.790Z</updated>
     
@@ -607,8 +631,8 @@
   
   <entry>
     <title>P1160 队列安排</title>
-    <link href="http://lzylzy.cf/posts/b71d7c5c/"/>
-    <id>http://lzylzy.cf/posts/b71d7c5c/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P1160-%E9%98%9F%E5%88%97%E5%AE%89%E6%8E%92/"/>
+    <id>https://lzylzy.cf/2020/06/21/P1160-%E9%98%9F%E5%88%97%E5%AE%89%E6%8E%92/</id>
     <published>2020-06-21T08:48:39.000Z</published>
     <updated>2020-06-21T10:59:52.784Z</updated>
     
@@ -629,8 +653,8 @@
   
   <entry>
     <title>P4387【深基15.习9】验证栈序列</title>
-    <link href="http://lzylzy.cf/posts/b494a7bf/"/>
-    <id>http://lzylzy.cf/posts/b494a7bf/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P4387%E3%80%90%E6%B7%B1%E5%9F%BA15-%E4%B9%A09%E3%80%91%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97/"/>
+    <id>https://lzylzy.cf/2020/06/21/P4387%E3%80%90%E6%B7%B1%E5%9F%BA15-%E4%B9%A09%E3%80%91%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97/</id>
     <published>2020-06-21T08:27:48.000Z</published>
     <updated>2020-06-21T08:28:24.262Z</updated>
     
@@ -651,8 +675,8 @@
   
   <entry>
     <title>P5250【深基17.例5】木材仓库</title>
-    <link href="http://lzylzy.cf/posts/9462a6a7/"/>
-    <id>http://lzylzy.cf/posts/9462a6a7/</id>
+    <link href="https://lzylzy.cf/2020/06/21/P5250%E3%80%90%E6%B7%B1%E5%9F%BA17-%E4%BE%8B5%E3%80%91%E6%9C%A8%E6%9D%90%E4%BB%93%E5%BA%93/"/>
+    <id>https://lzylzy.cf/2020/06/21/P5250%E3%80%90%E6%B7%B1%E5%9F%BA17-%E4%BE%8B5%E3%80%91%E6%9C%A8%E6%9D%90%E4%BB%93%E5%BA%93/</id>
     <published>2020-06-21T07:22:54.000Z</published>
     <updated>2020-06-21T07:35:17.971Z</updated>
     
@@ -677,8 +701,8 @@
   
   <entry>
     <title>如何安全的举报自己的学校？</title>
-    <link href="http://lzylzy.cf/posts/ada246ea/"/>
-    <id>http://lzylzy.cf/posts/ada246ea/</id>
+    <link href="https://lzylzy.cf/2020/05/21/%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E7%9A%84%E4%B8%BE%E6%8A%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AD%A6%E6%A0%A1%EF%BC%9F/"/>
+    <id>https://lzylzy.cf/2020/05/21/%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E7%9A%84%E4%B8%BE%E6%8A%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AD%A6%E6%A0%A1%EF%BC%9F/</id>
     <published>2020-05-21T13:39:08.000Z</published>
     <updated>2020-08-16T11:15:12.833Z</updated>
     
@@ -701,8 +725,8 @@
   
   <entry>
     <title>CF1178D Prime Graph</title>
-    <link href="http://lzylzy.cf/posts/2a07be94/"/>
-    <id>http://lzylzy.cf/posts/2a07be94/</id>
+    <link href="https://lzylzy.cf/2020/05/21/CF1178D%20Prime%20Graph/"/>
+    <id>https://lzylzy.cf/2020/05/21/CF1178D%20Prime%20Graph/</id>
     <published>2020-05-21T13:38:00.000Z</published>
     <updated>2020-07-24T04:11:44.064Z</updated>
     
@@ -719,14 +743,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>CF1220D Alex and Julian</title>
-    <link href="http://lzylzy.cf/posts/ed89373b/"/>
-    <id>http://lzylzy.cf/posts/ed89373b/</id>
+    <link href="https://lzylzy.cf/2020/05/19/CF1220D%20Alex%20and%20Julian/"/>
+    <id>https://lzylzy.cf/2020/05/19/CF1220D%20Alex%20and%20Julian/</id>
     <published>2020-05-19T12:49:46.000Z</published>
     <updated>2020-07-24T04:11:32.345Z</updated>
     
@@ -744,14 +768,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>P6275 [USACO20OPEN]Sprinklers 2: Return of the Alfalfa P </title>
-    <link href="http://lzylzy.cf/posts/5f2781ba/"/>
-    <id>http://lzylzy.cf/posts/5f2781ba/</id>
+    <link href="https://lzylzy.cf/2020/05/12/P6275-USACO20OPEN-Sprinklers-2-Return-of-the-Alfalfa-P/"/>
+    <id>https://lzylzy.cf/2020/05/12/P6275-USACO20OPEN-Sprinklers-2-Return-of-the-Alfalfa-P/</id>
     <published>2020-05-12T13:41:15.000Z</published>
     <updated>2020-05-12T13:45:43.413Z</updated>
     
@@ -774,8 +798,8 @@
   
   <entry>
     <title>母亲节快乐！</title>
-    <link href="http://lzylzy.cf/posts/c20ab536/"/>
-    <id>http://lzylzy.cf/posts/c20ab536/</id>
+    <link href="https://lzylzy.cf/2020/05/10/mother/"/>
+    <id>https://lzylzy.cf/2020/05/10/mother/</id>
     <published>2020-05-10T14:32:34.000Z</published>
     <updated>2020-06-21T05:06:29.668Z</updated>
     
@@ -796,8 +820,8 @@
   
   <entry>
     <title>P3258</title>
-    <link href="http://lzylzy.cf/posts/b173244f/"/>
-    <id>http://lzylzy.cf/posts/b173244f/</id>
+    <link href="https://lzylzy.cf/2020/05/07/P3258/"/>
+    <id>https://lzylzy.cf/2020/05/07/P3258/</id>
     <published>2020-05-07T07:24:38.000Z</published>
     <updated>2020-07-24T04:10:38.191Z</updated>
     
@@ -817,14 +841,14 @@
     
     
     
-      <category term="OI" scheme="http://lzylzy.cf/tags/OI/"/>
+      <category term="OI" scheme="https://lzylzy.cf/tags/OI/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://lzylzy.cf/posts/4a17b156/"/>
-    <id>http://lzylzy.cf/posts/4a17b156/</id>
+    <link href="https://lzylzy.cf/2020/05/02/hello-world/"/>
+    <id>https://lzylzy.cf/2020/05/02/hello-world/</id>
     <published>2020-05-02T10:12:05.890Z</published>
     <updated>2020-05-08T10:13:33.025Z</updated>
     
