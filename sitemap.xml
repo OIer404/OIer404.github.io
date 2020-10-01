@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lzylzy.cf/posts/d12f746c.html</loc>
+    <loc>https://lzylzy.cf/categories/index.html</loc>
+    
+    <lastmod>2020-10-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lzylzy.cf/posts/10394e70.html</loc>
+    
+    <lastmod>2020-10-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lzylzy.cf/posts/aedc3926.html</loc>
     
     <lastmod>2020-10-01</lastmod>
     
@@ -10,6 +24,13 @@
   
   <url>
     <loc>https://lzylzy.cf/posts/434887bc.html</loc>
+    
+    <lastmod>2020-10-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lzylzy.cf/posts/d12f746c.html</loc>
     
     <lastmod>2020-10-01</lastmod>
     
@@ -38,13 +59,6 @@
   
   <url>
     <loc>https://lzylzy.cf/about/index.html</loc>
-    
-    <lastmod>2020-09-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lzylzy.cf/posts/aedc3926.html</loc>
     
     <lastmod>2020-09-19</lastmod>
     
@@ -107,13 +121,6 @@
   </url>
   
   <url>
-    <loc>https://lzylzy.cf/posts/10394e70.html</loc>
-    
-    <lastmod>2020-09-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://lzylzy.cf/posts/9189b2df.html</loc>
     
     <lastmod>2020-09-13</lastmod>
@@ -171,13 +178,6 @@
   
   <url>
     <loc>https://lzylzy.cf/tags/index.html</loc>
-    
-    <lastmod>2020-08-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lzylzy.cf/categories/index.html</loc>
     
     <lastmod>2020-08-17</lastmod>
     
@@ -375,14 +375,14 @@
   </url>
   
   <url>
-    <loc>https://lzylzy.cf/tags/%E6%9E%9A%E4%B8%BE/</loc>
+    <loc>https://lzylzy.cf/tags/%E8%B4%AA%E5%BF%83/</loc>
     <lastmod>2020-10-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lzylzy.cf/tags/OI%E3%80%81/</loc>
+    <loc>https://lzylzy.cf/tags/%E6%9E%9A%E4%B8%BE/</loc>
     <lastmod>2020-10-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -403,21 +403,7 @@
   </url>
   
   <url>
-    <loc>https://lzylzy.cf/tags/OI-%EF%BC%8C%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
-    <lastmod>2020-10-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lzylzy.cf/tags/code/</loc>
-    <lastmod>2020-10-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lzylzy.cf/tags/%E8%B4%AA%E5%BF%83/</loc>
     <lastmod>2020-10-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
