@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lzylzy.cf/posts/d12f746c.html</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lzylzy.cf/apps/index.html</loc>
     
     <lastmod>2020-11-03</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>https://lzylzy.cf/posts/434887bc.html</loc>
-    
-    <lastmod>2020-10-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lzylzy.cf/posts/d12f746c.html</loc>
     
     <lastmod>2020-10-01</lastmod>
     
@@ -487,5 +487,12 @@
   </url>
   
 
+  
+  <url>
+    <loc>https://lzylzy.cf/categories/%E7%94%B5%E7%A3%81%E9%87%87%E6%9A%96/</loc>
+    <lastmod>2020-11-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>
