@@ -63,7 +63,102 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>于是只要三次Dijkstra就可以实现这个做法</p>
 <p>记得开long long</p>
 <p>另外128的空间用得不能太浪费 比赛大部分时间都卡在空间上。。。</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> inf=<span class="number">100000000000000000</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1001</span></span><br><span class="line"><span class="keyword">int</span> a,b,c,n,m; </span><br><span class="line"><span class="keyword">int</span> r[maxn][maxn];</span><br><span class="line">ll d[maxn*maxn],d1[maxn*maxn],d2[maxn*maxn];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pos(x,y) ((x-1)*m+y)</span></span><br><span class="line"><span class="keyword">int</span> S;</span><br><span class="line"><span class="keyword">int</span> gox[<span class="number">4</span>]={<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>};</span><br><span class="line"><span class="keyword">int</span> goy[<span class="number">4</span>]={<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>};</span><br><span class="line"><span class="keyword">bool</span> vis[maxn*maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	ll dis;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;a)<span class="keyword">const</span>{</span><br><span class="line">		<span class="keyword">return</span> dis&gt;a.dis; </span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line">priority_queue&lt;node&gt; q;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(ll d[],<span class="keyword">int</span> sx,<span class="keyword">int</span> sy)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">	q.push((node){sx,sy,d[S]});</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> nowx=q.top().x;</span><br><span class="line">		<span class="keyword">int</span> nowy=q.top().y;</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">int</span> now=pos(nowx,nowy);</span><br><span class="line">		<span class="keyword">if</span>(vis[now])<span class="keyword">continue</span>;</span><br><span class="line">		vis[now]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> tox=nowx+gox[i];</span><br><span class="line">			<span class="keyword">int</span> toy=nowy+goy[i];</span><br><span class="line">			<span class="keyword">int</span> to=pos(tox,toy);</span><br><span class="line">			<span class="keyword">if</span>(tox&lt;=<span class="number">0</span>||toy&lt;=<span class="number">0</span>||tox&gt;n||toy&gt;m)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(d[to]&gt;d[now]+r[tox][toy])</span><br><span class="line">			{</span><br><span class="line">				d[to]=d[now]+r[tox][toy];</span><br><span class="line">				q.push((node){tox,toy,d[to]});</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d"</span>,&amp;n,&amp;m,&amp;a,&amp;b,&amp;c);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;r[i][j]);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	S=pos(n,b);</span><br><span class="line">	<span class="built_in">memset</span>(d,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">	d[S]=r[n][b];</span><br><span class="line">	dijkstra(d,n,b);</span><br><span class="line">	</span><br><span class="line">	S=pos(n,c);</span><br><span class="line">	<span class="built_in">memset</span>(d1,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(d1));</span><br><span class="line">	d1[S]=r[n][c];</span><br><span class="line">	dijkstra(d1,n,c);</span><br><span class="line">	</span><br><span class="line">	S=pos(<span class="number">1</span>,a);</span><br><span class="line">	<span class="built_in">memset</span>(d2,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(d2));</span><br><span class="line">	d2[S]=r[<span class="number">1</span>][a];</span><br><span class="line">	dijkstra(d2,<span class="number">1</span>,a);</span><br><span class="line">	ll ans=inf;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> x=pos(i,j);</span><br><span class="line">			ans=min(ans,d[x]+d1[x]+d2[x]<span class="number">-2</span>*r[i][j]);</span><br><span class="line">		}</span><br><span class="line">	 } </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">网格图上有三个点 从最上面的A出发到下面的B,C </span></span><br><span class="line"><span class="comment">这两条路的交集可以只计算一次长度 </span></span><br><span class="line"><span class="comment">求最短路 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">倒着两边dij </span></span><br><span class="line"><span class="comment">把点权转化成边权 </span></span><br><span class="line"><span class="comment">X-&gt;Y路径的边权是Y点的权值 </span></span><br><span class="line"><span class="comment">初始值不是0 </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> inf=<span class="hljs-number">100000000000000000</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 1001</span>
+<span class="hljs-keyword">int</span> a,b,c,n,m; 
+<span class="hljs-keyword">int</span> r[maxn][maxn];
+ll d[maxn*maxn],d1[maxn*maxn],d2[maxn*maxn];
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> pos(x,y) ((x-1)*m+y)</span>
+<span class="hljs-keyword">int</span> S;
+<span class="hljs-keyword">int</span> gox[<span class="hljs-number">4</span>]={<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>};
+<span class="hljs-keyword">int</span> goy[<span class="hljs-number">4</span>]={<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>};
+<span class="hljs-keyword">bool</span> vis[maxn*maxn];
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+	<span class="hljs-keyword">int</span> x,y;
+	ll dis;
+	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt;(<span class="hljs-keyword">const</span> node &amp;a)<span class="hljs-keyword">const</span>{
+		<span class="hljs-keyword">return</span> dis&gt;a.dis; 
+	}
+};
+priority_queue&lt;node&gt; q;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dijkstra</span><span class="hljs-params">(ll d[],<span class="hljs-keyword">int</span> sx,<span class="hljs-keyword">int</span> sy)</span>
+</span>{
+	<span class="hljs-built_in">memset</span>(vis,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(vis));
+	q.push((node){sx,sy,d[S]});
+	<span class="hljs-keyword">while</span>(!q.empty())
+	{
+		<span class="hljs-keyword">int</span> nowx=q.top().x;
+		<span class="hljs-keyword">int</span> nowy=q.top().y;
+		q.pop();
+		<span class="hljs-keyword">int</span> now=pos(nowx,nowy);
+		<span class="hljs-keyword">if</span>(vis[now])<span class="hljs-keyword">continue</span>;
+		vis[now]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">4</span>;i++)
+		{
+			<span class="hljs-keyword">int</span> tox=nowx+gox[i];
+			<span class="hljs-keyword">int</span> toy=nowy+goy[i];
+			<span class="hljs-keyword">int</span> to=pos(tox,toy);
+			<span class="hljs-keyword">if</span>(tox&lt;=<span class="hljs-number">0</span>||toy&lt;=<span class="hljs-number">0</span>||tox&gt;n||toy&gt;m)<span class="hljs-keyword">continue</span>;
+			<span class="hljs-keyword">if</span>(d[to]&gt;d[now]+r[tox][toy])
+			{
+				d[to]=d[now]+r[tox][toy];
+				q.push((node){tox,toy,d[to]});
+			}
+		}
+	}
+	
+	
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d%d%d"</span>,&amp;n,&amp;m,&amp;a,&amp;b,&amp;c);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)
+		{
+			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;r[i][j]);
+		}
+	}
+	S=pos(n,b);
+	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0x3f</span>,<span class="hljs-keyword">sizeof</span>(d));
+	d[S]=r[n][b];
+	dijkstra(d,n,b);
+	
+	S=pos(n,c);
+	<span class="hljs-built_in">memset</span>(d1,<span class="hljs-number">0x3f</span>,<span class="hljs-keyword">sizeof</span>(d1));
+	d1[S]=r[n][c];
+	dijkstra(d1,n,c);
+	
+	S=pos(<span class="hljs-number">1</span>,a);
+	<span class="hljs-built_in">memset</span>(d2,<span class="hljs-number">0x3f</span>,<span class="hljs-keyword">sizeof</span>(d2));
+	d2[S]=r[<span class="hljs-number">1</span>][a];
+	dijkstra(d2,<span class="hljs-number">1</span>,a);
+	ll ans=inf;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)
+		{
+			<span class="hljs-keyword">int</span> x=pos(i,j);
+			ans=min(ans,d[x]+d1[x]+d2[x]<span class="hljs-number">-2</span>*r[i][j]);
+		}
+	 } 
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-comment">/*
+网格图上有三个点 从最上面的A出发到下面的B,C 
+这两条路的交集可以只计算一次长度 
+求最短路 
+
+倒着两边dij 
+把点权转化成边权 
+X-&gt;Y路径的边权是Y点的权值 
+初始值不是0 
+*/</span>
+</code></pre>
 <p>耗时：1.5h</p>
 <p>提交：10</p>
 <p>T3T4一打眼就不会所以放弃~</p>

@@ -51,7 +51,84 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>找出目标状态再一次回到1号点的最小花费</p>
 <p>此处 因为图上距离的定义 所以我们不必再多枚举其他节点</p>
 <p>code</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 20</span></span><br><span class="line"><span class="keyword">int</span> x[maxn],y[maxn],z[maxn];</span><br><span class="line">ll f[maxn][<span class="number">1048579</span>];</span><br><span class="line">ll dis[maxn][maxn];</span><br><span class="line"><span class="function">ll <span class="title">Dis</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	ll a=x[m],b=y[m],c=z[m];</span><br><span class="line">	ll p=x[f],q=y[f],r=z[f];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">abs</span>(p-a)+<span class="built_in">abs</span>(q-b)+max(<span class="number">0l</span>l,r-c);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">		{</span><br><span class="line">			dis[i][j]=Dis(i,j);</span><br><span class="line">		}</span><br><span class="line">		dis[i][i]=<span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">if</span>(i==k)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(i!=j&amp;j!=k)</span><br><span class="line">				{</span><br><span class="line">					dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]);</span><br><span class="line">				}</span><br><span class="line">			}</span><br><span class="line">		 } </span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;x[i],&amp;y[i],&amp;z[i]);</span><br><span class="line">	}</span><br><span class="line">	Init();</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;(<span class="number">1</span>&lt;&lt;(n));j++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">if</span>(!(j&amp;(<span class="number">1</span>&lt;&lt;i)))<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)</span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>((j&amp;(<span class="number">1</span>&lt;&lt;k)))<span class="keyword">continue</span>;</span><br><span class="line">			<span class="comment">//	cout&lt;&lt;i&lt;&lt;" "&lt;&lt;k&lt;&lt;" "&lt;&lt;dis[i][k]&lt;&lt;endl;</span></span><br><span class="line">				f[k][j|(<span class="number">1</span>&lt;&lt;k)]=min(f[k][j|(<span class="number">1</span>&lt;&lt;k)],f[i][j]+dis[i][k]);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	ll ans=inf;</span><br><span class="line">	<span class="keyword">int</span> j=(<span class="number">1</span>&lt;&lt;(n))<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	{</span><br><span class="line">		ans=min(ans,f[i][j]+dis[i][<span class="number">0</span>]);</span><br><span class="line">		<span class="comment">//cout&lt;&lt;i&lt;&lt;" "&lt;&lt;f[i][j]&lt;&lt;endl;</span></span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 20</span>
+<span class="hljs-keyword">int</span> x[maxn],y[maxn],z[maxn];
+ll f[maxn][<span class="hljs-number">1048579</span>];
+ll dis[maxn][maxn];
+<span class="hljs-function">ll <span class="hljs-title">Dis</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m,<span class="hljs-keyword">int</span> f)</span>
+</span>{
+	ll a=x[m],b=y[m],c=z[m];
+	ll p=x[f],q=y[f],r=z[f];
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(p-a)+<span class="hljs-built_in">abs</span>(q-b)+max(<span class="hljs-number">0l</span>l,r-c);
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)
+		{
+			dis[i][j]=Dis(i,j);
+		}
+		dis[i][i]=<span class="hljs-number">0</span>;
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;n;k++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)
+		{
+			<span class="hljs-keyword">if</span>(i==k)<span class="hljs-keyword">continue</span>;
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)
+			{
+				<span class="hljs-keyword">if</span>(i!=j&amp;j!=k)
+				{
+					dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]);
+				}
+			}
+		 } 
+	}
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>,&amp;x[i],&amp;y[i],&amp;z[i]);
+	}
+	Init();
+	<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0x3f</span>,<span class="hljs-keyword">sizeof</span>(f));
+	f[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;(<span class="hljs-number">1</span>&lt;&lt;(n));j++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)
+		{
+			<span class="hljs-keyword">if</span>(!(j&amp;(<span class="hljs-number">1</span>&lt;&lt;i)))<span class="hljs-keyword">continue</span>;
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;n;k++)
+			{
+				<span class="hljs-keyword">if</span>((j&amp;(<span class="hljs-number">1</span>&lt;&lt;k)))<span class="hljs-keyword">continue</span>;
+			<span class="hljs-comment">//	cout&lt;&lt;i&lt;&lt;" "&lt;&lt;k&lt;&lt;" "&lt;&lt;dis[i][k]&lt;&lt;endl;</span>
+				f[k][j|(<span class="hljs-number">1</span>&lt;&lt;k)]=min(f[k][j|(<span class="hljs-number">1</span>&lt;&lt;k)],f[i][j]+dis[i][k]);
+			}
+		}
+	}
+	ll ans=inf;
+	<span class="hljs-keyword">int</span> j=(<span class="hljs-number">1</span>&lt;&lt;(n))<span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)
+	{
+		ans=min(ans,f[i][j]+dis[i][<span class="hljs-number">0</span>]);
+		<span class="hljs-comment">//cout&lt;&lt;i&lt;&lt;" "&lt;&lt;f[i][j]&lt;&lt;endl;</span>
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <h1 id="官方英文题解"><a class="markdownIt-Anchor" href="#官方英文题解"></a> 官方英文题解</h1>
 <blockquote>
 <p>Since the triangular inequalities hold among the costs of traveling between the cities, so there is no need to travel from one city to another via other cities other than those two cities.</p>

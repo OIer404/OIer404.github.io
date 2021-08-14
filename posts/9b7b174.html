@@ -53,7 +53,111 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>简单地说，我们需要在O(logN)或O(1)的时间内 计算一个矩形中点的个数</p>
 <p>此题为弱化版 只有一千个点 但是点的范围为10^6</p>
 <p>所以可以离散化之后使用二维前缀和解决。</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 10009</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">}a[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(a.x==b.x)<span class="keyword">return</span> a.y&lt;b.y;</span><br><span class="line">	<span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp2</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(a.y==b.y)<span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">	<span class="keyword">return</span> a.y&lt;b.y;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> f[maxn][maxn],maxx,maxy;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Get</span><span class="params">(<span class="keyword">int</span> x1,<span class="keyword">int</span> y1,<span class="keyword">int</span> x2,<span class="keyword">int</span> y2)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> f[x2][y2]+f[x1][y1]-f[x1][y2]-f[x2][y1];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">()</span><span class="comment">//二维前缀和初始化 </span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=maxx;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=maxy;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="comment">//if(f[i][j]==1)cout&lt;&lt;i&lt;&lt;" "&lt;&lt;j&lt;&lt;endl;</span></span><br><span class="line">			f[i][j]+=f[i][j<span class="number">-1</span>]+f[i<span class="number">-1</span>][j]-f[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> lx=<span class="number">1</span>,ly=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		sum=Get(<span class="number">0</span>,<span class="number">0</span>,lx,ly);</span><br><span class="line">		<span class="keyword">if</span>(sum&gt;x||lx&gt;maxx)</span><br><span class="line">		{</span><br><span class="line">			lx--;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		}</span><br><span class="line">		lx++;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">while</span>(lx&gt;=<span class="number">1</span>&amp;&amp;ly&lt;=maxy)</span><br><span class="line">	{</span><br><span class="line">		<span class="comment">//验证lx,ly剩下三块是否符合要求 </span></span><br><span class="line">		<span class="keyword">if</span>(Get(lx,<span class="number">0</span>,maxx,ly)&lt;=x&amp;&amp;Get(lx,ly,maxx,maxy)&lt;=x&amp;&amp;Get(<span class="number">0</span>,ly,lx,maxy)&lt;=x)</span><br><span class="line">		{</span><br><span class="line">			<span class="comment">//cout&lt;&lt;lx&lt;&lt;" "&lt;&lt;ly&lt;&lt;" "&lt;&lt;x&lt;&lt;endl;</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		}</span><br><span class="line">		ly++;</span><br><span class="line">		<span class="keyword">while</span>(Get(<span class="number">0</span>,<span class="number">0</span>,lx,ly)&gt;x&amp;&amp;lx&gt;=<span class="number">1</span>)</span><br><span class="line">		{</span><br><span class="line">			lx--;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a[i].x,&amp;a[i].y);</span><br><span class="line">	}</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp);</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(a[i].x==last)last=a[i].x,a[i].x=a[i<span class="number">-1</span>].x;</span><br><span class="line">		<span class="keyword">else</span> last=a[i].x,a[i].x=a[i<span class="number">-1</span>].x+<span class="number">1</span>;</span><br><span class="line">		maxx=max(maxx,a[i].x);</span><br><span class="line">	}</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(a[i].y==last)last=a[i].y,a[i].y=a[i<span class="number">-1</span>].y;</span><br><span class="line">		<span class="keyword">else</span> last=a[i].y,a[i].y=a[i<span class="number">-1</span>].y+<span class="number">1</span>;</span><br><span class="line">		f[a[i].x][a[i].y]=<span class="number">1</span>;</span><br><span class="line">		maxy=max(maxy,a[i].y);</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//离散化完成 </span></span><br><span class="line">	Init();</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">0</span>,r=n,ans;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(check(mid))</span><br><span class="line">		{</span><br><span class="line">			ans=mid;</span><br><span class="line">			r=mid<span class="number">-1</span>;</span><br><span class="line">		}<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 10009</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+	<span class="hljs-keyword">int</span> x,y;
+}a[maxn]; 
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cmp</span><span class="hljs-params">(node a,node b)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(a.x==b.x)<span class="hljs-keyword">return</span> a.y&lt;b.y;
+	<span class="hljs-keyword">return</span> a.x&lt;b.x;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cmp2</span><span class="hljs-params">(node a,node b)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(a.y==b.y)<span class="hljs-keyword">return</span> a.x&lt;b.x;
+	<span class="hljs-keyword">return</span> a.y&lt;b.y;
+}
+<span class="hljs-keyword">int</span> f[maxn][maxn],maxx,maxy;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x1,<span class="hljs-keyword">int</span> y1,<span class="hljs-keyword">int</span> x2,<span class="hljs-keyword">int</span> y2)</span>
+</span>{
+	<span class="hljs-keyword">return</span> f[x2][y2]+f[x1][y1]-f[x1][y2]-f[x2][y1];
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span><span class="hljs-comment">//二维前缀和初始化 </span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=maxx;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=maxy;j++)
+		{
+			<span class="hljs-comment">//if(f[i][j]==1)cout&lt;&lt;i&lt;&lt;" "&lt;&lt;j&lt;&lt;endl;</span>
+			f[i][j]+=f[i][j<span class="hljs-number">-1</span>]+f[i<span class="hljs-number">-1</span>][j]-f[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];
+		}
+	}
+}
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>
+</span>{
+	<span class="hljs-keyword">int</span> lx=<span class="hljs-number">1</span>,ly=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		sum=Get(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,lx,ly);
+		<span class="hljs-keyword">if</span>(sum&gt;x||lx&gt;maxx)
+		{
+			lx--;
+			<span class="hljs-keyword">break</span>;
+		}
+		lx++;
+	}
+	<span class="hljs-keyword">while</span>(lx&gt;=<span class="hljs-number">1</span>&amp;&amp;ly&lt;=maxy)
+	{
+		<span class="hljs-comment">//验证lx,ly剩下三块是否符合要求 </span>
+		<span class="hljs-keyword">if</span>(Get(lx,<span class="hljs-number">0</span>,maxx,ly)&lt;=x&amp;&amp;Get(lx,ly,maxx,maxy)&lt;=x&amp;&amp;Get(<span class="hljs-number">0</span>,ly,lx,maxy)&lt;=x)
+		{
+			<span class="hljs-comment">//cout&lt;&lt;lx&lt;&lt;" "&lt;&lt;ly&lt;&lt;" "&lt;&lt;x&lt;&lt;endl;</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+		}
+		ly++;
+		<span class="hljs-keyword">while</span>(Get(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,lx,ly)&gt;x&amp;&amp;lx&gt;=<span class="hljs-number">1</span>)
+		{
+			lx--;
+		}
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;a[i].x,&amp;a[i].y);
+	}
+	sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+n,cmp);
+	<span class="hljs-keyword">int</span> last=<span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">if</span>(a[i].x==last)last=a[i].x,a[i].x=a[i<span class="hljs-number">-1</span>].x;
+		<span class="hljs-keyword">else</span> last=a[i].x,a[i].x=a[i<span class="hljs-number">-1</span>].x+<span class="hljs-number">1</span>;
+		maxx=max(maxx,a[i].x);
+	}
+	sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+n,cmp2);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">if</span>(a[i].y==last)last=a[i].y,a[i].y=a[i<span class="hljs-number">-1</span>].y;
+		<span class="hljs-keyword">else</span> last=a[i].y,a[i].y=a[i<span class="hljs-number">-1</span>].y+<span class="hljs-number">1</span>;
+		f[a[i].x][a[i].y]=<span class="hljs-number">1</span>;
+		maxy=max(maxy,a[i].y);
+	}
+	<span class="hljs-comment">//离散化完成 </span>
+	Init();
+	<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>,r=n,ans;
+	<span class="hljs-keyword">while</span>(l&lt;=r)
+	{
+		<span class="hljs-keyword">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span>(check(mid))
+		{
+			ans=mid;
+			r=mid<span class="hljs-number">-1</span>;
+		}<span class="hljs-keyword">else</span> l=mid+<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

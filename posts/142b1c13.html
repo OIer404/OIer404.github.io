@@ -47,7 +47,106 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>但是既然都做到这了 我们可以接着想想 如何简化这个求法</p>
 <p>一般我们默认根为1 不过现在可以直接把根指定为S</p>
 <p>经过一遍dfs遍历即可知道每个点的父亲 就可以解决问题</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 400009</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son[maxn],t[maxn];</span><br><span class="line"><span class="keyword">int</span> S,T;</span><br><span class="line"><span class="keyword">int</span> cnt,top=<span class="number">0</span>,stk[maxn];</span><br><span class="line"><span class="keyword">int</span> num=<span class="number">0</span>,dfn[maxn],low[maxn];</span><br><span class="line"><span class="keyword">bool</span> same=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	num++;</span><br><span class="line">	dfn[x]=low[x]=num;</span><br><span class="line">	stk[++top]=x;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;son[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=son[x][i];</span><br><span class="line">		<span class="keyword">if</span>(!dfn[to])</span><br><span class="line">		{</span><br><span class="line">			tarjan(to);</span><br><span class="line">			low[x]=min(low[x],low[to]);</span><br><span class="line">			<span class="keyword">if</span>(low[to]==dfn[x])</span><br><span class="line">			{</span><br><span class="line">				cnt++;</span><br><span class="line">				<span class="keyword">bool</span> flag=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k!=to;top--)</span><br><span class="line">				{</span><br><span class="line">					k=stk[top];</span><br><span class="line">					t[cnt].push_back(k);</span><br><span class="line">					t[k].push_back(cnt);</span><br><span class="line">					<span class="keyword">if</span>(k==S||k==T)</span><br><span class="line">					{</span><br><span class="line">						<span class="keyword">if</span>(flag)same=<span class="number">1</span>;</span><br><span class="line">						<span class="keyword">else</span> flag=<span class="number">1</span>;</span><br><span class="line">					}</span><br><span class="line">				}</span><br><span class="line">				t[x].push_back(cnt);</span><br><span class="line">				t[cnt].push_back(x);</span><br><span class="line">				<span class="keyword">if</span>(x==S||x==T)</span><br><span class="line">				{</span><br><span class="line">					<span class="keyword">if</span>(flag)same=<span class="number">1</span>;</span><br><span class="line">					<span class="keyword">else</span> flag=<span class="number">1</span>;</span><br><span class="line">				}</span><br><span class="line">			}</span><br><span class="line">		}<span class="keyword">else</span> low[x]=min(low[x],dfn[to]); </span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> fa[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=t[x][i];</span><br><span class="line">		<span class="keyword">if</span>(!fa[to])</span><br><span class="line">		{</span><br><span class="line">			fa[to]=x;</span><br><span class="line">			dfs(to);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	cnt=n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="keyword">if</span>(x==<span class="number">0</span>&amp;&amp;y==<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">		son[x].push_back(y);</span><br><span class="line">		son[y].push_back(x);</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;S,&amp;T);</span><br><span class="line">	tarjan(S);</span><br><span class="line">	<span class="keyword">if</span>(!dfn[T]||same)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"No solution\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">	dfs(S);</span><br><span class="line">	<span class="keyword">int</span> x=fa[T],ans=inf;</span><br><span class="line">	<span class="keyword">while</span>(x!=S)</span><br><span class="line">	{</span><br><span class="line">		ans=min(ans,x);</span><br><span class="line">		x=fa[x];</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 400009</span>
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; son[maxn],t[maxn];
+<span class="hljs-keyword">int</span> S,T;
+<span class="hljs-keyword">int</span> cnt,top=<span class="hljs-number">0</span>,stk[maxn];
+<span class="hljs-keyword">int</span> num=<span class="hljs-number">0</span>,dfn[maxn],low[maxn];
+<span class="hljs-keyword">bool</span> same=<span class="hljs-number">0</span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>
+</span>{
+	num++;
+	dfn[x]=low[x]=num;
+	stk[++top]=x;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;son[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=son[x][i];
+		<span class="hljs-keyword">if</span>(!dfn[to])
+		{
+			tarjan(to);
+			low[x]=min(low[x],low[to]);
+			<span class="hljs-keyword">if</span>(low[to]==dfn[x])
+			{
+				cnt++;
+				<span class="hljs-keyword">bool</span> flag=<span class="hljs-number">0</span>;
+				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k!=to;top--)
+				{
+					k=stk[top];
+					t[cnt].push_back(k);
+					t[k].push_back(cnt);
+					<span class="hljs-keyword">if</span>(k==S||k==T)
+					{
+						<span class="hljs-keyword">if</span>(flag)same=<span class="hljs-number">1</span>;
+						<span class="hljs-keyword">else</span> flag=<span class="hljs-number">1</span>;
+					}
+				}
+				t[x].push_back(cnt);
+				t[cnt].push_back(x);
+				<span class="hljs-keyword">if</span>(x==S||x==T)
+				{
+					<span class="hljs-keyword">if</span>(flag)same=<span class="hljs-number">1</span>;
+					<span class="hljs-keyword">else</span> flag=<span class="hljs-number">1</span>;
+				}
+			}
+		}<span class="hljs-keyword">else</span> low[x]=min(low[x],dfn[to]); 
+	}
+}
+<span class="hljs-keyword">int</span> fa[maxn];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;t[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=t[x][i];
+		<span class="hljs-keyword">if</span>(!fa[to])
+		{
+			fa[to]=x;
+			dfs(to);
+		}
+	}
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	cnt=n;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-keyword">int</span> x,y;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;x,&amp;y);
+		<span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>&amp;&amp;y==<span class="hljs-number">0</span>)<span class="hljs-keyword">break</span>;
+		son[x].push_back(y);
+		son[y].push_back(x);
+	}
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;S,&amp;T);
+	tarjan(S);
+	<span class="hljs-keyword">if</span>(!dfn[T]||same)
+	{
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"No solution\n"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	}
+	dfs(S);
+	<span class="hljs-keyword">int</span> x=fa[T],ans=inf;
+	<span class="hljs-keyword">while</span>(x!=S)
+	{
+		ans=min(ans,x);
+		x=fa[x];
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

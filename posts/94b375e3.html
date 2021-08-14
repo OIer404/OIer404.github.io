@@ -57,7 +57,161 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>这个和就是所有边权值和的两倍</p>
 <p>统计完之后，如果深度最小的点是圆点 记得把答案+1</p>
 <p>因为它没有贡献向上的边</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 400009</span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> low[maxn],dfn[maxn],stk[maxn];</span><br><span class="line"><span class="keyword">int</span> dep[maxn];</span><br><span class="line"><span class="keyword">int</span> dfk[maxn],ff=<span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> top=<span class="number">0</span>,cnt=n;</span><br><span class="line"><span class="keyword">int</span> fa[maxn][<span class="number">20</span>],num=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son[maxn],t[maxn];</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="keyword">int</span> s[maxn];<span class="comment">//这个点到根路径上的和 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> dfk[a]&lt;dfk[b];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	stk[++top]=x;</span><br><span class="line">	num++;</span><br><span class="line">	low[x]=dfn[x]=num;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;son[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=son[x][i];</span><br><span class="line">		<span class="keyword">if</span>(!dfn[to])</span><br><span class="line">		{</span><br><span class="line">			tarjan(to);</span><br><span class="line">			low[x]=min(low[x],low[to]);</span><br><span class="line">			<span class="keyword">if</span>(low[to]==dfn[x])<span class="comment">//找到一个点双 </span></span><br><span class="line">			{</span><br><span class="line">				cnt++;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k!=to;top--)</span><br><span class="line">				{</span><br><span class="line">					k=stk[top];</span><br><span class="line">					t[cnt].push_back(k);</span><br><span class="line">					t[k].push_back(cnt);</span><br><span class="line">				}</span><br><span class="line">				t[x].push_back(cnt);</span><br><span class="line">				t[cnt].push_back(x);</span><br><span class="line">			}</span><br><span class="line">		}<span class="keyword">else</span> low[x]=min(low[x],dfn[to]);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	dfk[x]=++ff;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=t[x][i];</span><br><span class="line">		<span class="keyword">if</span>(!fa[to][<span class="number">0</span>])</span><br><span class="line">		{</span><br><span class="line">			fa[to][<span class="number">0</span>]=x;</span><br><span class="line">			dep[to]=dep[x]+<span class="number">1</span>;</span><br><span class="line">			s[to]=s[x];</span><br><span class="line">			<span class="keyword">if</span>(to&lt;=n)s[to]++; </span><br><span class="line">			dfs(to);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> lca;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(dep[x]&lt;dep[y])swap(x,y);</span><br><span class="line">	<span class="keyword">int</span> k=dep[x]-dep[y],l=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ans=s[x]+s[y];</span><br><span class="line">	<span class="keyword">while</span>(k)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(k&amp;<span class="number">1</span>)x=fa[x][l];</span><br><span class="line">		l++;k&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(x==y)</span><br><span class="line">	{</span><br><span class="line">		lca=x;</span><br><span class="line">		<span class="keyword">return</span> ans<span class="number">-2</span>*s[lca];</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">19</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(fa[x][i]!=fa[y][i])</span><br><span class="line">		{</span><br><span class="line">			x=fa[x][i],y=fa[y][i];</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	lca=fa[x][<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">return</span> ans<span class="number">-2</span>*s[lca];</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">		num=<span class="number">0</span>;cnt=n;ff=<span class="number">0</span>;top=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(s,<span class="number">0</span>,<span class="keyword">sizeof</span>(s));</span><br><span class="line">		<span class="built_in">memset</span>(low,<span class="number">0</span>,<span class="keyword">sizeof</span>(low));</span><br><span class="line">		<span class="built_in">memset</span>(dfn,<span class="number">0</span>,<span class="keyword">sizeof</span>(dfn));</span><br><span class="line">		<span class="built_in">memset</span>(dfk,<span class="number">0</span>,<span class="keyword">sizeof</span>(dfk));</span><br><span class="line">		<span class="built_in">memset</span>(fa,<span class="number">0</span>,<span class="keyword">sizeof</span>(fa));</span><br><span class="line">		<span class="built_in">memset</span>(dep,<span class="number">0</span>,<span class="keyword">sizeof</span>(dep));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">2</span>*n;i++)</span><br><span class="line">		{</span><br><span class="line">			son[i].clear();t[i].clear();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> x,y;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">			son[x].push_back(y);</span><br><span class="line">			son[y].push_back(x);</span><br><span class="line">		}</span><br><span class="line">		tarjan(<span class="number">1</span>);</span><br><span class="line">		dfs(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">19</span>;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			{</span><br><span class="line">				fa[j][i]=fa[fa[j][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">int</span> q;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q);</span><br><span class="line">		<span class="keyword">while</span>(q--)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> l;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;l);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=l;j++)</span><br><span class="line">			{</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[j]);</span><br><span class="line">			}</span><br><span class="line">			sort(a+<span class="number">1</span>,a+<span class="number">1</span>+l,cmp);</span><br><span class="line">			<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;l;i++)</span><br><span class="line">			{</span><br><span class="line">				sum+=LCA(a[i],a[i+<span class="number">1</span>]);</span><br><span class="line">			}</span><br><span class="line">			sum+=LCA(a[<span class="number">1</span>],a[l]);</span><br><span class="line">			sum/=<span class="number">2</span>;</span><br><span class="line">			sum-=l;</span><br><span class="line">			<span class="keyword">if</span>(lca&lt;=n)sum++;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sum);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 400009</span>
+<span class="hljs-keyword">int</span> n,m;
+<span class="hljs-keyword">int</span> low[maxn],dfn[maxn],stk[maxn];
+<span class="hljs-keyword">int</span> dep[maxn];
+<span class="hljs-keyword">int</span> dfk[maxn],ff=<span class="hljs-number">0</span>; 
+<span class="hljs-keyword">int</span> top=<span class="hljs-number">0</span>,cnt=n;
+<span class="hljs-keyword">int</span> fa[maxn][<span class="hljs-number">20</span>],num=<span class="hljs-number">0</span>;
+<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; son[maxn],t[maxn];
+<span class="hljs-keyword">int</span> a[maxn];
+<span class="hljs-keyword">int</span> s[maxn];<span class="hljs-comment">//这个点到根路径上的和 </span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span>
+</span>{
+	<span class="hljs-keyword">return</span> dfk[a]&lt;dfk[b];
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>
+</span>{
+	stk[++top]=x;
+	num++;
+	low[x]=dfn[x]=num;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;son[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=son[x][i];
+		<span class="hljs-keyword">if</span>(!dfn[to])
+		{
+			tarjan(to);
+			low[x]=min(low[x],low[to]);
+			<span class="hljs-keyword">if</span>(low[to]==dfn[x])<span class="hljs-comment">//找到一个点双 </span>
+			{
+				cnt++;
+				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k!=to;top--)
+				{
+					k=stk[top];
+					t[cnt].push_back(k);
+					t[k].push_back(cnt);
+				}
+				t[x].push_back(cnt);
+				t[cnt].push_back(x);
+			}
+		}<span class="hljs-keyword">else</span> low[x]=min(low[x],dfn[to]);
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span>
+</span>{
+	dfk[x]=++ff;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;t[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=t[x][i];
+		<span class="hljs-keyword">if</span>(!fa[to][<span class="hljs-number">0</span>])
+		{
+			fa[to][<span class="hljs-number">0</span>]=x;
+			dep[to]=dep[x]+<span class="hljs-number">1</span>;
+			s[to]=s[x];
+			<span class="hljs-keyword">if</span>(to&lt;=n)s[to]++; 
+			dfs(to);
+		}
+	}
+}
+<span class="hljs-keyword">int</span> lca;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">LCA</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(dep[x]&lt;dep[y])swap(x,y);
+	<span class="hljs-keyword">int</span> k=dep[x]-dep[y],l=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">int</span> ans=s[x]+s[y];
+	<span class="hljs-keyword">while</span>(k)
+	{
+		<span class="hljs-keyword">if</span>(k&amp;<span class="hljs-number">1</span>)x=fa[x][l];
+		l++;k&gt;&gt;=<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">if</span>(x==y)
+	{
+		lca=x;
+		<span class="hljs-keyword">return</span> ans<span class="hljs-number">-2</span>*s[lca];
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">19</span>;i&gt;=<span class="hljs-number">0</span>;i--)
+	{
+		<span class="hljs-keyword">if</span>(fa[x][i]!=fa[y][i])
+		{
+			x=fa[x][i],y=fa[y][i];
+		}
+	}
+	lca=fa[x][<span class="hljs-number">0</span>];
+	<span class="hljs-keyword">return</span> ans<span class="hljs-number">-2</span>*s[lca];
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> T;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;T);
+	<span class="hljs-keyword">while</span>(T--)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m);
+		num=<span class="hljs-number">0</span>;cnt=n;ff=<span class="hljs-number">0</span>;top=<span class="hljs-number">0</span>;
+		<span class="hljs-built_in">memset</span>(s,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(s));
+		<span class="hljs-built_in">memset</span>(low,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(low));
+		<span class="hljs-built_in">memset</span>(dfn,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(dfn));
+		<span class="hljs-built_in">memset</span>(dfk,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(dfk));
+		<span class="hljs-built_in">memset</span>(fa,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(fa));
+		<span class="hljs-built_in">memset</span>(dep,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(dep));
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">2</span>*n;i++)
+		{
+			son[i].clear();t[i].clear();
+		}
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)
+		{
+			<span class="hljs-keyword">int</span> x,y;
+			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;x,&amp;y);
+			son[x].push_back(y);
+			son[y].push_back(x);
+		}
+		tarjan(<span class="hljs-number">1</span>);
+		dfs(<span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">19</span>;i++)
+		{
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)
+			{
+				fa[j][i]=fa[fa[j][i<span class="hljs-number">-1</span>]][i<span class="hljs-number">-1</span>];
+			}
+		}
+		<span class="hljs-keyword">int</span> q;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;q);
+		<span class="hljs-keyword">while</span>(q--)
+		{
+			<span class="hljs-keyword">int</span> l;
+			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;l);
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=l;j++)
+			{
+				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[j]);
+			}
+			sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+l,cmp);
+			<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;l;i++)
+			{
+				sum+=LCA(a[i],a[i+<span class="hljs-number">1</span>]);
+			}
+			sum+=LCA(a[<span class="hljs-number">1</span>],a[l]);
+			sum/=<span class="hljs-number">2</span>;
+			sum-=l;
+			<span class="hljs-keyword">if</span>(lca&lt;=n)sum++;
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,sum);
+		}
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

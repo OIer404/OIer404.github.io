@@ -118,7 +118,65 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>类似摆花那题</p>
 <p>使用递推解决</p>
 <p>预处理组合数+long long可以避免精度爆炸</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n; </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 199</span></span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line">ll C[maxn][maxn]; </span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		<span class="keyword">if</span>(x!=<span class="number">0</span>)<span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	 } </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">		<span class="keyword">if</span>(a[i]==<span class="number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		}</span><br><span class="line">		a[i]--;</span><br><span class="line">		sum+=a[i];</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(sum!=n<span class="number">-2</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		C[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">		{</span><br><span class="line">			C[i][j]=C[i<span class="number">-1</span>][j]+C[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	问题转化为，生成长度为n-2的序列，每个数字出现a[i]-1次 </span></span><br><span class="line"><span class="comment">	求有多少种序列 </span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	ll ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> y=n<span class="number">-2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		ans*=C[y][a[i]];</span><br><span class="line">		y-=a[i];</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> n; 
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 199</span>
+<span class="hljs-keyword">int</span> a[maxn];
+ll C[maxn][maxn]; 
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-keyword">int</span> x;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;x);
+		<span class="hljs-keyword">if</span>(x!=<span class="hljs-number">0</span>)<span class="hljs-built_in">printf</span>(<span class="hljs-string">"0\n"</span>);
+		<span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">"1\n"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	 } 
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[i]);
+		<span class="hljs-keyword">if</span>(a[i]==<span class="hljs-number">0</span>)
+		{
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">"0\n"</span>);
+			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		}
+		a[i]--;
+		sum+=a[i];
+	}
+	<span class="hljs-keyword">if</span>(sum!=n<span class="hljs-number">-2</span>)
+	{
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"0\n"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=n;i++)
+	{
+		C[i][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=i;j++)
+		{
+			C[i][j]=C[i<span class="hljs-number">-1</span>][j]+C[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];
+		}
+	}
+	<span class="hljs-comment">/*
+	问题转化为，生成长度为n-2的序列，每个数字出现a[i]-1次 
+	求有多少种序列 
+	*/</span>
+	ll ans=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> y=n<span class="hljs-number">-2</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		ans*=C[y][a[i]];
+		y-=a[i];
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

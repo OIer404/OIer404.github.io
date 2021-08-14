@@ -41,7 +41,83 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>如果还不理解的话，给个测试样例：</p>
 <p>输入：( [ ) ] )</p>
 <p>输出：( [ ( ) ] )</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ck</span><span class="params">(<span class="keyword">char</span> a,<span class="keyword">char</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="string">'('</span>&amp;&amp;b==<span class="string">')'</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="string">'['</span>&amp;&amp;b==<span class="string">']'</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="string">'('</span>&amp;&amp;b==<span class="string">')'</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="string">'['</span>&amp;&amp;b==<span class="string">']'</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">char</span> ans[<span class="number">2590</span>];</span><br><span class="line"><span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">char</span>&gt; adi[<span class="number">2590</span>];</span><br><span class="line"><span class="keyword">int</span> y=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> cy=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">string</span> a;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; st;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; pos;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(a[i]==<span class="string">'('</span>||a[i]==<span class="string">'['</span>)</span><br><span class="line">		{</span><br><span class="line">			st.push(a[i]);</span><br><span class="line">			pos.push(x);<span class="comment">//不能push i 因为中间插队的括号会导致位置错乱 </span></span><br><span class="line">		}<span class="keyword">else</span></span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">if</span>(st.empty())<span class="comment">//!!!!小心RE！ </span></span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(a[i]==<span class="string">')'</span>)ans[++x]=<span class="string">'('</span>;</span><br><span class="line">				<span class="keyword">else</span> ans[++x]=<span class="string">'['</span>;</span><br><span class="line">				ans[++x]=a[i];<span class="comment">//小心WA~！ </span></span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			 } </span><br><span class="line">			<span class="keyword">char</span> p=st.top();</span><br><span class="line">		<span class="comment">//	cout&lt;&lt;"CP:"&lt;&lt;p&lt;&lt;" "&lt;&lt;a[i]&lt;&lt;endl; </span></span><br><span class="line">			<span class="keyword">if</span>(ck(p,a[i]))</span><br><span class="line">			{</span><br><span class="line">				st.pop();</span><br><span class="line">				pos.pop();</span><br><span class="line">			}<span class="keyword">else</span></span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(a[i]==<span class="string">')'</span>)ans[++x]=<span class="string">'('</span>;</span><br><span class="line">				<span class="keyword">else</span> ans[++x]=<span class="string">'['</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		ans[++x]=a[i];</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//cout&lt;&lt;x&lt;&lt;endl;</span></span><br><span class="line">	<span class="keyword">while</span>(!st.empty())</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">char</span> p=st.top();</span><br><span class="line">		<span class="keyword">int</span> q=pos.top()+<span class="number">1</span>;</span><br><span class="line">		st.pop();pos.pop(); </span><br><span class="line">		y++;</span><br><span class="line">		adi[y].first=q;</span><br><span class="line">		<span class="keyword">if</span>(p==<span class="string">'('</span>)adi[y].second=<span class="string">')'</span>;</span><br><span class="line">		<span class="keyword">else</span> adi[y].second=<span class="string">']'</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(y!=<span class="number">0</span>)sort(adi+<span class="number">1</span>,adi+<span class="number">1</span>+y);<span class="comment">//好像reverse就行 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=x;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans[i];</span><br><span class="line">		<span class="keyword">if</span>(y!=<span class="number">0</span>&amp;&amp;adi[cy].first==i)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;adi[cy].second;</span><br><span class="line">			cy++;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ck</span><span class="hljs-params">(<span class="hljs-keyword">char</span> a,<span class="hljs-keyword">char</span> b)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(a==<span class="hljs-string">'('</span>&amp;&amp;b==<span class="hljs-string">')'</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span>(a==<span class="hljs-string">'['</span>&amp;&amp;b==<span class="hljs-string">']'</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	swap(a,b);
+	<span class="hljs-keyword">if</span>(a==<span class="hljs-string">'('</span>&amp;&amp;b==<span class="hljs-string">')'</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span>(a==<span class="hljs-string">'['</span>&amp;&amp;b==<span class="hljs-string">']'</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-keyword">char</span> ans[<span class="hljs-number">2590</span>];
+<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>;
+pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">char</span>&gt; adi[<span class="hljs-number">2590</span>];
+<span class="hljs-keyword">int</span> y=<span class="hljs-number">0</span>;
+<span class="hljs-keyword">int</span> cy=<span class="hljs-number">1</span>;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">string</span> a;
+	<span class="hljs-built_in">cin</span>&gt;&gt;a;
+	<span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">char</span>&gt; st;
+	<span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; pos;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;a.size();i++)
+	{
+		<span class="hljs-keyword">if</span>(a[i]==<span class="hljs-string">'('</span>||a[i]==<span class="hljs-string">'['</span>)
+		{
+			st.push(a[i]);
+			pos.push(x);<span class="hljs-comment">//不能push i 因为中间插队的括号会导致位置错乱 </span>
+		}<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">if</span>(st.empty())<span class="hljs-comment">//!!!!小心RE！ </span>
+			{
+				<span class="hljs-keyword">if</span>(a[i]==<span class="hljs-string">')'</span>)ans[++x]=<span class="hljs-string">'('</span>;
+				<span class="hljs-keyword">else</span> ans[++x]=<span class="hljs-string">'['</span>;
+				ans[++x]=a[i];<span class="hljs-comment">//小心WA~！ </span>
+				<span class="hljs-keyword">continue</span>;
+			 } 
+			<span class="hljs-keyword">char</span> p=st.top();
+		<span class="hljs-comment">//	cout&lt;&lt;"CP:"&lt;&lt;p&lt;&lt;" "&lt;&lt;a[i]&lt;&lt;endl; </span>
+			<span class="hljs-keyword">if</span>(ck(p,a[i]))
+			{
+				st.pop();
+				pos.pop();
+			}<span class="hljs-keyword">else</span>
+			{
+				<span class="hljs-keyword">if</span>(a[i]==<span class="hljs-string">')'</span>)ans[++x]=<span class="hljs-string">'('</span>;
+				<span class="hljs-keyword">else</span> ans[++x]=<span class="hljs-string">'['</span>;
+			}
+		}
+		ans[++x]=a[i];
+	}
+	<span class="hljs-comment">//cout&lt;&lt;x&lt;&lt;endl;</span>
+	<span class="hljs-keyword">while</span>(!st.empty())
+	{
+		<span class="hljs-keyword">char</span> p=st.top();
+		<span class="hljs-keyword">int</span> q=pos.top()+<span class="hljs-number">1</span>;
+		st.pop();pos.pop(); 
+		y++;
+		adi[y].first=q;
+		<span class="hljs-keyword">if</span>(p==<span class="hljs-string">'('</span>)adi[y].second=<span class="hljs-string">')'</span>;
+		<span class="hljs-keyword">else</span> adi[y].second=<span class="hljs-string">']'</span>;
+	}
+	<span class="hljs-keyword">if</span>(y!=<span class="hljs-number">0</span>)sort(adi+<span class="hljs-number">1</span>,adi+<span class="hljs-number">1</span>+y);<span class="hljs-comment">//好像reverse就行 </span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)
+	{
+		<span class="hljs-built_in">cout</span>&lt;&lt;ans[i];
+		<span class="hljs-keyword">if</span>(y!=<span class="hljs-number">0</span>&amp;&amp;adi[cy].first==i)
+		{
+			<span class="hljs-built_in">cout</span>&lt;&lt;adi[cy].second;
+			cy++;
+		}
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

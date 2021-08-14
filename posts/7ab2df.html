@@ -53,7 +53,48 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>还要考虑越界的情况 即 $ j-a[i].num&lt;0$ 表示我们要求的空闲挂钩数太少了 直接跳过即可</p>
 <p>转移方程为</p>
 <p>$ f[i][j]=max(f[i-1][j],f[i-1][max(0,j-a[i].num)+1]+a[i].joy); $</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n; </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2009</span></span><br><span class="line"><span class="keyword">int</span> f[maxn][maxn];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">f[i][j]表示前i个物品 当前j个挂钩时候的最大值 </span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line">	<span class="keyword">int</span> num,joy;</span><br><span class="line">}a[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> a.num&gt;b.num;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a[i].num,&amp;a[i].joy);</span><br><span class="line">		f[<span class="number">0</span>][i]=-inf;f[i][n+<span class="number">1</span>]=-inf;</span><br><span class="line">	}</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>]=f[<span class="number">0</span>][n+<span class="number">1</span>]=-inf;</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp);</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">		{</span><br><span class="line">			f[i][j]=max(f[i<span class="number">-1</span>][j],f[i<span class="number">-1</span>][max(<span class="number">0</span>,j-a[i].num)+<span class="number">1</span>]+a[i].joy);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">int</span> ans=-inf;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)ans=max(ans,f[n][i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x3f3f3f3f</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> n; 
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 2009</span>
+<span class="hljs-keyword">int</span> f[maxn][maxn];
+<span class="hljs-comment">/*
+f[i][j]表示前i个物品 当前j个挂钩时候的最大值 
+*/</span> 
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+	<span class="hljs-keyword">int</span> num,joy;
+}a[maxn];
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cmp</span><span class="hljs-params">(node a,node b)</span>
+</span>{
+	<span class="hljs-keyword">return</span> a.num&gt;b.num;
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;a[i].num,&amp;a[i].joy);
+		f[<span class="hljs-number">0</span>][i]=-inf;f[i][n+<span class="hljs-number">1</span>]=-inf;
+	}
+	f[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=f[<span class="hljs-number">0</span>][n+<span class="hljs-number">1</span>]=-inf;
+	sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+n,cmp);
+	f[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>; 
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=n;j&gt;=<span class="hljs-number">0</span>;j--)
+		{
+			f[i][j]=max(f[i<span class="hljs-number">-1</span>][j],f[i<span class="hljs-number">-1</span>][max(<span class="hljs-number">0</span>,j-a[i].num)+<span class="hljs-number">1</span>]+a[i].joy);
+		}
+	}
+	<span class="hljs-keyword">int</span> ans=-inf;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=n;i++)ans=max(ans,f[n][i]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

@@ -45,7 +45,54 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>自己得到(ai+bi)票</p>
 <p>所以每场演讲的贡献是(ai*2+bi)</p>
 <p>按照这个顺序对所有城市排序之后贪心即可</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int ll</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200009</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line">	ll a,b;</span><br><span class="line">}a[maxn];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp3</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(a.a*<span class="number">2</span>+a.b==b.a*<span class="number">2</span>+b.b)<span class="keyword">return</span> a.a&gt;b.a;</span><br><span class="line">	<span class="keyword">return</span> a.a*<span class="number">2</span>+a.b&gt;b.a*<span class="number">2</span>+b.b;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">	ll sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;a[i].a,&amp;a[i].b);</span><br><span class="line">		sum+=a[i].a;</span><br><span class="line">	}</span><br><span class="line">	ll sum2=sum,s=<span class="number">0</span>;;</span><br><span class="line">	<span class="keyword">int</span> p1=maxn;</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp3);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		sum2-=a[i].a;</span><br><span class="line">		s+=a[i].a+a[i].b;</span><br><span class="line">		<span class="keyword">if</span>(s&gt;sum2)</span><br><span class="line">		{</span><br><span class="line">			p1=min(p1,i);<span class="keyword">break</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,p1);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int ll</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 200009</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+	ll a,b;
+}a[maxn];
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cmp3</span><span class="hljs-params">(node a,node b)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(a.a*<span class="hljs-number">2</span>+a.b==b.a*<span class="hljs-number">2</span>+b.b)<span class="hljs-keyword">return</span> a.a&gt;b.a;
+	<span class="hljs-keyword">return</span> a.a*<span class="hljs-number">2</span>+a.b&gt;b.a*<span class="hljs-number">2</span>+b.b;
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>,&amp;n);
+	ll sum=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld%lld"</span>,&amp;a[i].a,&amp;a[i].b);
+		sum+=a[i].a;
+	}
+	ll sum2=sum,s=<span class="hljs-number">0</span>;;
+	<span class="hljs-keyword">int</span> p1=maxn;
+	sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+n,cmp3);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		sum2-=a[i].a;
+		s+=a[i].a+a[i].b;
+		<span class="hljs-keyword">if</span>(s&gt;sum2)
+		{
+			p1=min(p1,i);<span class="hljs-keyword">break</span>;
+		}
+	}
+	
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,p1);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

@@ -42,7 +42,16 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <h3 id="3缺省源"><a class="markdownIt-Anchor" href="#3缺省源"></a> 3.缺省源</h3>
 <p>位置：工具-&gt;编译器选项-&gt;代码-&gt;缺省源</p>
 <p>勾选“向项目初始源文件插入代码”，在下面一栏写入以下代码：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x7fffffff</span></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inf 0x7fffffff</span>
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 <p>解释：第一行万能头文件，不喜欢可以自己写别的</p>
 <p>第二行不讲。。。</p>
 <p>第三行的意思是当你写ll的时候系统就会认为你写了long long，比如你可以这么写： ll a=0;</p>
@@ -68,7 +77,9 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>在各大OJ上，系统栈都会开大，而在本地调试时，常用到云端下载的各种毒瘤数据，一不小心就可能在本机上爆掉系统栈，在oj上却没事。</p>
 <p>目录：工具-&gt;编译选项-&gt;编译器</p>
 <p>勾选 选择编译时加入以下命令，输入：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Wl,--stack=134217728</span><br></pre></td></tr></tbody></table></figure><script>
+<pre class="highlight"><code class>-Wl,--stack=134217728
+</code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }

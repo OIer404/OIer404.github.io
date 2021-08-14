@@ -53,7 +53,39 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 </blockquote>
 <p>由于题目给定了计算公式，所以模拟即可 记得开long long</p>
 <p><img src="https://i.loli.net/2020/10/17/2hyf3bnpu97B4VX.jpg" alt="ABC180B" loading="lazy"></p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">Abs</span><span class="params">(ll x)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="keyword">return</span> -x;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">}</span><br><span class="line">ll man=<span class="number">0</span>,euc=<span class="number">0</span>,che=-inf;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		ll x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;x);</span><br><span class="line">		che=max(che,Abs(x));</span><br><span class="line">		man+=<span class="built_in">abs</span>(x);</span><br><span class="line">		euc+=x*x;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n%.10lf\n%lld\n"</span>,man,<span class="built_in">sqrt</span>(euc),che);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-function">ll <span class="hljs-title">Abs</span><span class="hljs-params">(ll x)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> -x;
+	<span class="hljs-keyword">return</span> x;
+}
+ll man=<span class="hljs-number">0</span>,euc=<span class="hljs-number">0</span>,che=-inf;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> n;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		ll x;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>,&amp;x);
+		che=max(che,Abs(x));
+		man+=<span class="hljs-built_in">abs</span>(x);
+		euc+=x*x;
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n%.10lf\n%lld\n"</span>,man,<span class="hljs-built_in">sqrt</span>(euc),che);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <hr>
 <h2 id="c-cream-puff"><a class="markdownIt-Anchor" href="#c-cream-puff"></a> <strong>C - Cream puff</strong></h2>
 <blockquote>
@@ -63,7 +95,39 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>可以从1到根号n枚举i</p>
 <p>然后使用stack存下来n/i</p>
 <p>倒序输出即可完成后面一半的解</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	ll n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">	<span class="built_in">stack</span>&lt;ll&gt; st;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=<span class="built_in">sqrt</span>(n);i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(n%i==<span class="number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,i);</span><br><span class="line">			st.push(n/i);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(st.top()*st.top()==n)st.pop();<span class="comment">//细节，平方数要pop一下 </span></span><br><span class="line">	<span class="keyword">while</span>(!st.empty())</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,st.top());</span><br><span class="line">		st.pop();</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	ll n;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>,&amp;n);
+	<span class="hljs-built_in">stack</span>&lt;ll&gt; st;
+	<span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-built_in">sqrt</span>(n);i++)
+	{
+		<span class="hljs-keyword">if</span>(n%i==<span class="hljs-number">0</span>)
+		{
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,i);
+			st.push(n/i);
+		}
+	}
+	<span class="hljs-keyword">if</span>(st.top()*st.top()==n)st.pop();<span class="hljs-comment">//细节，平方数要pop一下 </span>
+	<span class="hljs-keyword">while</span>(!st.empty())
+	{
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,st.top());
+		st.pop();
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <hr>
 <h2 id="d-takahashi-unevolved"><a class="markdownIt-Anchor" href="#d-takahashi-unevolved"></a> <strong>D - Takahashi Unevolved</strong></h2>
 <p>真正开始有难度的地方</p>
@@ -78,7 +142,53 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>我们发现，当<strong>X&gt;B</strong>时，做乘法一定时亏损的，因为即使是乘以2也比加上B要差</p>
 <p>所以先一直用乘法，直到X&gt;B的时候就开始一直用加法</p>
 <p>代码有很多细节所以被卡了好久  QwQ</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll x,y,a,b;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>,&amp;x,&amp;y,&amp;a,&amp;b);</span><br><span class="line">	ll step=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x&lt;=b&amp;&amp;x&lt;y)<span class="comment">//使劲做乘法 </span></span><br><span class="line">	{</span><br><span class="line">		step++;</span><br><span class="line">		x*=a;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	y--;</span><br><span class="line">	<span class="keyword">if</span>(step)</span><br><span class="line">	{</span><br><span class="line">		<span class="comment">//这个时候倒退一步 看看做乘法优秀还是加法优秀 </span></span><br><span class="line">		x/=a;</span><br><span class="line">		x=min(x*a,x+b);</span><br><span class="line">		<span class="keyword">if</span>(x&gt;y)<span class="comment">//做乘法的时候就超标了 </span></span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,step<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	ll more=(y-x)/b;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,step+more);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">要么让x*a，要么让x+b</span></span><br><span class="line"><span class="comment">在X不超过Y的前提下 </span></span><br><span class="line"><span class="comment">求最大操作次数 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">似乎增加一次之后再做乘法就是亏 </span></span><br><span class="line"><span class="comment">所以先乘法 直到亏了之后就一直做加法 </span></span><br><span class="line"><span class="comment">一直做乘法，直到x大于b </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+ll x,y,a,b;
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld%lld%lld%lld"</span>,&amp;x,&amp;y,&amp;a,&amp;b);
+	ll step=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(x&lt;=b&amp;&amp;x&lt;y)<span class="hljs-comment">//使劲做乘法 </span>
+	{
+		step++;
+		x*=a;
+	}
+	
+	y--;
+	<span class="hljs-keyword">if</span>(step)
+	{
+		<span class="hljs-comment">//这个时候倒退一步 看看做乘法优秀还是加法优秀 </span>
+		x/=a;
+		x=min(x*a,x+b);
+		<span class="hljs-keyword">if</span>(x&gt;y)<span class="hljs-comment">//做乘法的时候就超标了 </span>
+		{
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,step<span class="hljs-number">-1</span>);
+			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		}
+	}
+	ll more=(y-x)/b;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,step+more);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-comment">/*
+要么让x*a，要么让x+b
+在X不超过Y的前提下 
+求最大操作次数 
+
+似乎增加一次之后再做乘法就是亏 
+所以先乘法 直到亏了之后就一直做加法 
+一直做乘法，直到x大于b 
+*/</span>
+</code></pre>
 <hr>
 <p>EF看着就没有思路，如果有时间会把题解搬过来的</p>
 <h1 id="e-traveling-salesman-among-aerial-cities"><a class="markdownIt-Anchor" href="#e-traveling-salesman-among-aerial-cities"></a> E - Traveling Salesman among Aerial Cities</h1>

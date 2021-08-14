@@ -46,7 +46,53 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>也就是说，对于任意两个数字，如果他们的lowbit相等，他们不会构成奇环</p>
 <p>于是问题变成了 求n个数中lowbit相等的数字最多有多少个</p>
 <p>code:</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x7fffffff</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200009</span></span><br><span class="line">ll a[maxn]; </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;(-x))</span></span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; num[<span class="number">69</span>];</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a[i]);</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//两个数lowbit相同就可以保留 </span></span><br><span class="line">	<span class="comment">//直接枚举lowbit？</span></span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>,w;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">60</span>;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> s=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="comment">//cout&lt;&lt;lowbit(a[j])&lt;&lt;" "&lt;&lt;(1&lt;&lt;i)&lt;&lt;endl;</span></span><br><span class="line">			<span class="keyword">if</span>(lowbit(a[j])==(<span class="number">1l</span>l&lt;&lt;i))</span><br><span class="line">			{</span><br><span class="line">				s++;</span><br><span class="line">			}<span class="keyword">else</span></span><br><span class="line">			{</span><br><span class="line">				num[i].push_back(a[j]);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(s&gt;ans)</span><br><span class="line">		{</span><br><span class="line">			w=i,ans=s;</span><br><span class="line">		}</span><br><span class="line">	 } </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-ans);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num[w].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,num[w][i]);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inf 0x7fffffff</span>
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 200009</span>
+ll a[maxn]; 
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> lowbit(x) (x&amp;(-x))</span>
+<span class="hljs-built_in">vector</span>&lt;ll&gt; num[<span class="hljs-number">69</span>];
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld"</span>,&amp;a[i]);
+	}
+	<span class="hljs-comment">//两个数lowbit相同就可以保留 </span>
+	<span class="hljs-comment">//直接枚举lowbit？</span>
+	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>,w;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">60</span>;i++)
+	{
+		<span class="hljs-keyword">int</span> s=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)
+		{
+			<span class="hljs-comment">//cout&lt;&lt;lowbit(a[j])&lt;&lt;" "&lt;&lt;(1&lt;&lt;i)&lt;&lt;endl;</span>
+			<span class="hljs-keyword">if</span>(lowbit(a[j])==(<span class="hljs-number">1l</span>l&lt;&lt;i))
+			{
+				s++;
+			}<span class="hljs-keyword">else</span>
+			{
+				num[i].push_back(a[j]);
+			}
+		}
+		<span class="hljs-keyword">if</span>(s&gt;ans)
+		{
+			w=i,ans=s;
+		}
+	 } 
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,n-ans);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;num[w].size();i++)
+	{
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,num[w][i]);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

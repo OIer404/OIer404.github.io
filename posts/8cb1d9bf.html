@@ -41,7 +41,96 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
 <p>主要考察高精度</p>
 <p>对于数字的变化，我们可以用佛洛依德求出每个数字有多少种变化，然后再连乘起来就能得到答案。</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 20</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ex(x) (x==-1?inf:x)</span></span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="built_in">string</span> a;</span><br><span class="line"><span class="built_in">string</span> ans=<span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">int</span> x[maxn],y[maxn];</span><br><span class="line"><span class="keyword">int</span> f[maxn][maxn];</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">cheng</span><span class="params">(<span class="built_in">string</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">int</span> jw=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=a.size()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> now=a[i]-<span class="string">'0'</span>;</span><br><span class="line">		now*=b;</span><br><span class="line">		now+=jw;</span><br><span class="line">		jw=now/<span class="number">10</span>;</span><br><span class="line">		now%=<span class="number">10</span>;</span><br><span class="line">		a[i]=now+<span class="string">'0'</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(jw==<span class="number">0</span>)<span class="keyword">return</span> a;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">while</span>(jw)</span><br><span class="line">	{</span><br><span class="line">		q.push(jw%<span class="number">10</span>);jw/=<span class="number">10</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">string</span> s=<span class="string">""</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	{</span><br><span class="line">		s+=(<span class="keyword">char</span>)(q.front()+<span class="string">'0'</span>);</span><br><span class="line">		q.pop();</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> s+a;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x[i],&amp;y[i]);</span><br><span class="line">		<span class="keyword">if</span>(y[i]==<span class="number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			k--,i--;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		}</span><br><span class="line">		f[x[i]][y[i]]=<span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)f[i][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>;l&lt;=<span class="number">9</span>;l++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">9</span>;j++)</span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(i!=j&amp;&amp;j!=l&amp;&amp;l!=i)</span><br><span class="line">					f[i][j]|=f[i][l]&amp;f[l][j];</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">9</span>;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">if</span>(f[a[i]-<span class="string">'0'</span>][j]==<span class="number">1</span>)</span><br><span class="line">			{</span><br><span class="line">				p++;</span><br><span class="line">			<span class="comment">//	cout&lt;&lt;a[i]&lt;&lt;" "&lt;&lt;j&lt;&lt;endl;</span></span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(p!=<span class="number">0</span>)ans=cheng(ans,p);</span><br><span class="line">	<span class="comment">//	cout&lt;&lt;a[i]&lt;&lt;" "&lt;&lt;p&lt;&lt;endl;</span></span><br><span class="line">}</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x3f3f3f3f</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 20</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ex(x) (x==-1?inf:x)</span>
+<span class="hljs-keyword">int</span> n,k;
+<span class="hljs-built_in">string</span> a;
+<span class="hljs-built_in">string</span> ans=<span class="hljs-string">"1"</span>;
+<span class="hljs-keyword">int</span> x[maxn],y[maxn];
+<span class="hljs-keyword">int</span> f[maxn][maxn];
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">cheng</span><span class="hljs-params">(<span class="hljs-built_in">string</span> a,<span class="hljs-keyword">int</span> b)</span>
+</span>{
+	<span class="hljs-keyword">int</span> jw=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=a.size()<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)
+	{
+		<span class="hljs-keyword">int</span> now=a[i]-<span class="hljs-string">'0'</span>;
+		now*=b;
+		now+=jw;
+		jw=now/<span class="hljs-number">10</span>;
+		now%=<span class="hljs-number">10</span>;
+		a[i]=now+<span class="hljs-string">'0'</span>;
+	}
+	<span class="hljs-keyword">if</span>(jw==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> a;
+	<span class="hljs-built_in">queue</span>&lt;<span class="hljs-keyword">int</span>&gt; q;
+	<span class="hljs-keyword">while</span>(jw)
+	{
+		q.push(jw%<span class="hljs-number">10</span>);jw/=<span class="hljs-number">10</span>;
+	}
+	<span class="hljs-built_in">string</span> s=<span class="hljs-string">""</span>;
+	<span class="hljs-keyword">while</span>(!q.empty())
+	{
+		s+=(<span class="hljs-keyword">char</span>)(q.front()+<span class="hljs-string">'0'</span>);
+		q.pop();
+	}
+	<span class="hljs-keyword">return</span> s+a;
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(f));
+	<span class="hljs-built_in">cin</span>&gt;&gt;a;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;k);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;i++)
+	{
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;x[i],&amp;y[i]);
+		<span class="hljs-keyword">if</span>(y[i]==<span class="hljs-number">0</span>)
+		{
+			k--,i--;
+			<span class="hljs-keyword">continue</span>;
+		}
+		f[x[i]][y[i]]=<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">10</span>;i++)f[i][i]=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>;l&lt;=<span class="hljs-number">9</span>;l++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">9</span>;i++)
+		{
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=<span class="hljs-number">9</span>;j++)
+			{
+				<span class="hljs-keyword">if</span>(i!=j&amp;&amp;j!=l&amp;&amp;l!=i)
+					f[i][j]|=f[i][l]&amp;f[l][j];
+			}
+		}
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;a.size();i++)
+	{
+		<span class="hljs-keyword">int</span> p=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=<span class="hljs-number">9</span>;j++)
+		{
+			<span class="hljs-keyword">if</span>(f[a[i]-<span class="hljs-string">'0'</span>][j]==<span class="hljs-number">1</span>)
+			{
+				p++;
+			<span class="hljs-comment">//	cout&lt;&lt;a[i]&lt;&lt;" "&lt;&lt;j&lt;&lt;endl;</span>
+			}
+		}
+		<span class="hljs-keyword">if</span>(p!=<span class="hljs-number">0</span>)ans=cheng(ans,p);
+	<span class="hljs-comment">//	cout&lt;&lt;a[i]&lt;&lt;" "&lt;&lt;p&lt;&lt;endl;</span>
+}
+	<span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

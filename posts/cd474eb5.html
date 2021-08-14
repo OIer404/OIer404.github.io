@@ -20,12 +20,12 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
   }
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(bp, s);
-})();</script><meta name="description" content="题目描述 为一段程序计算复杂度。 [题目链接](P3952 [NOIP2017 提高组] 时间复杂度)  题解 大模拟，但是要注意很多细节。 A++语言的循环结构如下： 123F i x y    循环体E">
+})();</script><meta name="description" content="题目描述 为一段程序计算复杂度。 [题目链接](P3952 [NOIP2017 提高组] 时间复杂度)  题解 大模拟，但是要注意很多细节。 A++语言的循环结构如下： F i x y     循环体 E">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P3952 [NOIP2017 提高组] 时间复杂度">
 <meta property="og:url" content="https://lzylzy.cf/posts/cd474eb5.html">
 <meta property="og:site_name" content="lzy&#39;s space">
-<meta property="og:description" content="题目描述 为一段程序计算复杂度。 [题目链接](P3952 [NOIP2017 提高组] 时间复杂度)  题解 大模拟，但是要注意很多细节。 A++语言的循环结构如下： 123F i x y    循环体E">
+<meta property="og:description" content="题目描述 为一段程序计算复杂度。 [题目链接](P3952 [NOIP2017 提高组] 时间复杂度)  题解 大模拟，但是要注意很多细节。 A++语言的循环结构如下： F i x y     循环体 E">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-16T06:05:14.000Z">
 <meta property="article:modified_time" content="2021-07-16T06:19:24.517Z">
@@ -39,7 +39,10 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
 <p>大模拟，但是要注意很多细节。</p>
 <p>A++语言的循环结构如下：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F i x y</span><br><span class="line">    循环体</span><br><span class="line">E</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp">F i x y
+    循环体
+E
+</code></pre>
 <a id="more"></a>
 <p>总体思路是，用stack记录循环嵌套，数一数最多嵌套了多少层</p>
 <p>接着是细节问题</p>
@@ -79,7 +82,98 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <li>这个循环占用的变量名</li>
 </ol>
 <p>注意细节。</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> TT; </span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;TT);</span><br><span class="line">	<span class="keyword">while</span>(TT--)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> l;</span><br><span class="line">		<span class="keyword">char</span> ch[<span class="number">10</span>];</span><br><span class="line">		<span class="keyword">bool</span> err=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; used;</span><br><span class="line">		<span class="built_in">stack</span>&lt; pair&lt; <span class="keyword">char</span>,pair &lt; <span class="keyword">int</span> , <span class="keyword">bool</span> &gt; &gt; &gt; st;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;l);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="built_in">strlen</span>(ch);i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">'0'</span>&lt;=ch[i]&amp;&amp;ch[i]&lt;=<span class="string">'9'</span>)</span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(ch[i<span class="number">-1</span>]==<span class="string">'('</span>)</span><br><span class="line">				{</span><br><span class="line">					t=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">				}<span class="keyword">else</span> <span class="keyword">if</span>(ch[i<span class="number">-1</span>]==<span class="string">'^'</span>)</span><br><span class="line">				{</span><br><span class="line">					t=ch[i]-<span class="string">'0'</span>;</span><br><span class="line">				}<span class="keyword">else</span> t=t*<span class="number">10</span>+ch[i]-<span class="string">'0'</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">int</span> ans=<span class="number">0</span>,now=<span class="number">0</span>,running=<span class="number">1</span>;;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line">			<span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'F'</span>)<span class="comment">//开始循环 </span></span><br><span class="line">			{</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line">				<span class="keyword">if</span>(used[ch[<span class="number">0</span>]]==<span class="number">-1</span>)err=<span class="number">1</span>;</span><br><span class="line">				used[ch[<span class="number">0</span>]]=<span class="number">-1</span>;</span><br><span class="line">				<span class="keyword">char</span> opt=ch[<span class="number">0</span>];</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line">				<span class="keyword">int</span> num1=<span class="number">0</span>,num2=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">bool</span> go=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">bool</span> tag1=(ch[<span class="number">0</span>]==<span class="string">'n'</span>);</span><br><span class="line">				<span class="keyword">if</span>(!tag1)<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="built_in">strlen</span>(ch);j++)num1=num1*<span class="number">10</span>+ch[j]-<span class="string">'0'</span>;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line">				<span class="keyword">bool</span> tag2=(ch[<span class="number">0</span>]==<span class="string">'n'</span>);</span><br><span class="line">				<span class="keyword">if</span>(!tag1)<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="built_in">strlen</span>(ch);j++)num2=num2*<span class="number">10</span>+ch[j]-<span class="string">'0'</span>;</span><br><span class="line">				<span class="keyword">int</span> key=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span>((tag1&amp;&amp;tag2)||(!tag1&amp;&amp;!tag2&amp;&amp;num1&lt;num2))</span><br><span class="line">				{</span><br><span class="line">					key=<span class="number">0</span>,go=<span class="number">1</span>;</span><br><span class="line">					ans=max(ans,now);</span><br><span class="line">				}<span class="keyword">if</span>(!tag1&amp;&amp;tag2)</span><br><span class="line">				{</span><br><span class="line">					now+=running;</span><br><span class="line">					ans=max(ans,now);</span><br><span class="line">					key=running;</span><br><span class="line">				}<span class="keyword">else</span> <span class="keyword">if</span>((tag1&amp;&amp;!tag2)||(!tag1&amp;&amp;!tag2&amp;&amp;num1&gt;num2))<span class="comment">//不会进行 </span></span><br><span class="line">				{</span><br><span class="line">					go=<span class="number">0</span>,running--;</span><br><span class="line">				}</span><br><span class="line">				st.push(make_pair(opt,make_pair(key,go)));</span><br><span class="line">			}<span class="keyword">else</span></span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">if</span>(!st.empty())</span><br><span class="line">				{</span><br><span class="line">					<span class="keyword">char</span> opt=st.top().first;</span><br><span class="line">					now-=st.top().second.first;</span><br><span class="line">					<span class="keyword">if</span>(!st.top().second.second)running++;</span><br><span class="line">					used[opt]=<span class="number">0</span>;</span><br><span class="line">					st.pop();</span><br><span class="line">				}<span class="keyword">else</span> err=<span class="number">1</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(!st.empty())err=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(err)<span class="built_in">printf</span>(<span class="string">"ERR\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(ans==t)<span class="built_in">printf</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"No\n"</span>);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> TT; 
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;TT);
+	<span class="hljs-keyword">while</span>(TT--)
+	{
+		<span class="hljs-keyword">int</span> t=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">int</span> l;
+		<span class="hljs-keyword">char</span> ch[<span class="hljs-number">10</span>];
+		<span class="hljs-keyword">bool</span> err=<span class="hljs-number">0</span>;
+		<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">char</span>,<span class="hljs-keyword">int</span>&gt; used;
+		<span class="hljs-built_in">stack</span>&lt; pair&lt; <span class="hljs-keyword">char</span>,pair &lt; <span class="hljs-keyword">int</span> , <span class="hljs-keyword">bool</span> &gt; &gt; &gt; st;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;l);
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch);
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-built_in">strlen</span>(ch);i++)
+		{
+			<span class="hljs-keyword">if</span>(<span class="hljs-string">'0'</span>&lt;=ch[i]&amp;&amp;ch[i]&lt;=<span class="hljs-string">'9'</span>)
+			{
+				<span class="hljs-keyword">if</span>(ch[i<span class="hljs-number">-1</span>]==<span class="hljs-string">'('</span>)
+				{
+					t=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;
+				}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(ch[i<span class="hljs-number">-1</span>]==<span class="hljs-string">'^'</span>)
+				{
+					t=ch[i]-<span class="hljs-string">'0'</span>;
+				}<span class="hljs-keyword">else</span> t=t*<span class="hljs-number">10</span>+ch[i]-<span class="hljs-string">'0'</span>;
+			}
+		}
+		<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>,now=<span class="hljs-number">0</span>,running=<span class="hljs-number">1</span>;;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=l;i++)
+		{
+			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch);
+			<span class="hljs-keyword">if</span>(ch[<span class="hljs-number">0</span>]==<span class="hljs-string">'F'</span>)<span class="hljs-comment">//开始循环 </span>
+			{
+				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch);
+				<span class="hljs-keyword">if</span>(used[ch[<span class="hljs-number">0</span>]]==<span class="hljs-number">-1</span>)err=<span class="hljs-number">1</span>;
+				used[ch[<span class="hljs-number">0</span>]]=<span class="hljs-number">-1</span>;
+				<span class="hljs-keyword">char</span> opt=ch[<span class="hljs-number">0</span>];
+				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch);
+				<span class="hljs-keyword">int</span> num1=<span class="hljs-number">0</span>,num2=<span class="hljs-number">0</span>;
+				<span class="hljs-keyword">bool</span> go=<span class="hljs-number">1</span>;
+				<span class="hljs-keyword">bool</span> tag1=(ch[<span class="hljs-number">0</span>]==<span class="hljs-string">'n'</span>);
+				<span class="hljs-keyword">if</span>(!tag1)<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">strlen</span>(ch);j++)num1=num1*<span class="hljs-number">10</span>+ch[j]-<span class="hljs-string">'0'</span>;
+				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,ch);
+				<span class="hljs-keyword">bool</span> tag2=(ch[<span class="hljs-number">0</span>]==<span class="hljs-string">'n'</span>);
+				<span class="hljs-keyword">if</span>(!tag1)<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">strlen</span>(ch);j++)num2=num2*<span class="hljs-number">10</span>+ch[j]-<span class="hljs-string">'0'</span>;
+				<span class="hljs-keyword">int</span> key=<span class="hljs-number">0</span>;
+				<span class="hljs-keyword">if</span>((tag1&amp;&amp;tag2)||(!tag1&amp;&amp;!tag2&amp;&amp;num1&lt;num2))
+				{
+					key=<span class="hljs-number">0</span>,go=<span class="hljs-number">1</span>;
+					ans=max(ans,now);
+				}<span class="hljs-keyword">if</span>(!tag1&amp;&amp;tag2)
+				{
+					now+=running;
+					ans=max(ans,now);
+					key=running;
+				}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>((tag1&amp;&amp;!tag2)||(!tag1&amp;&amp;!tag2&amp;&amp;num1&gt;num2))<span class="hljs-comment">//不会进行 </span>
+				{
+					go=<span class="hljs-number">0</span>,running--;
+				}
+				st.push(make_pair(opt,make_pair(key,go)));
+			}<span class="hljs-keyword">else</span>
+			{
+				<span class="hljs-keyword">if</span>(!st.empty())
+				{
+					<span class="hljs-keyword">char</span> opt=st.top().first;
+					now-=st.top().second.first;
+					<span class="hljs-keyword">if</span>(!st.top().second.second)running++;
+					used[opt]=<span class="hljs-number">0</span>;
+					st.pop();
+				}<span class="hljs-keyword">else</span> err=<span class="hljs-number">1</span>;
+			}
+		}
+		<span class="hljs-keyword">if</span>(!st.empty())err=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span>(err)<span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERR\n"</span>);
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(ans==t)<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Yes\n"</span>);
+		<span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">"No\n"</span>);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

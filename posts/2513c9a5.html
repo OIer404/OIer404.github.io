@@ -46,7 +46,42 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>接着看看有没有k个闹钟连续m分钟内出现</p>
 <p>如果有出现，我们关掉最后一个闹钟 这样是最优策略</p>
 <p>因为既可以让前面k-1个闹钟不会吵醒人，而又能最大限度限制后面连续闹钟的出现</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n,m,k;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200009</span></span><br><span class="line"><span class="keyword">int</span> a[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	sort(a+<span class="number">1</span>,a+<span class="number">1</span>+n);</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">int</span> s=<span class="number">0</span>;</span><br><span class="line">	q.push(a[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">if</span>(k==<span class="number">1</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;<span class="number">1000000</span>)<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span>(!q.empty())<span class="keyword">while</span>(!q.empty()&amp;&amp;a[i]-q.front()&gt;=m)q.pop();</span><br><span class="line">		<span class="keyword">if</span>(!q.empty()&amp;&amp; q.size()==k<span class="number">-1</span>)</span><br><span class="line">		{</span><br><span class="line">			s++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		}</span><br><span class="line">		q.push(a[i]);</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,s);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="CPP"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-keyword">int</span> n,m,k;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 200009</span>
+<span class="hljs-keyword">int</span> a[maxn]; 
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[i]);
+	sort(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+n);
+	<span class="hljs-built_in">queue</span>&lt;<span class="hljs-keyword">int</span>&gt; q;
+	<span class="hljs-keyword">int</span> s=<span class="hljs-number">0</span>;
+	q.push(a[<span class="hljs-number">1</span>]);
+	<span class="hljs-keyword">if</span>(k==<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">if</span>(a[i]&gt;<span class="hljs-number">1000000</span>)<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">if</span>(!q.empty())<span class="hljs-keyword">while</span>(!q.empty()&amp;&amp;a[i]-q.front()&gt;=m)q.pop();
+		<span class="hljs-keyword">if</span>(!q.empty()&amp;&amp; q.size()==k<span class="hljs-number">-1</span>)
+		{
+			s++;
+			<span class="hljs-keyword">continue</span>;
+		}
+		q.push(a[i]);
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,s);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <p>​</p>
 <script>
         document.querySelectorAll('.github-emoji')

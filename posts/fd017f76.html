@@ -36,7 +36,68 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>发现i是单调不降的，可以使用对顶堆解决问题</p>
 <p>类似问题：P1168中位数</p>
 <a id="more"></a>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x7fffffff</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt; &gt; q2;<span class="comment">//小的在上头</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; q1;<span class="comment">//大的在上头，大小控制为i </span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">200009</span>],t[<span class="number">200009</span>];</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">//freopen("h.in","r",stdin);</span></span><br><span class="line">	<span class="keyword">int</span> n,m;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;m,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		<span class="keyword">for</span>(;j&lt;=x;j++)</span><br><span class="line">		{</span><br><span class="line">			q1.push(a[j]);</span><br><span class="line">			<span class="keyword">while</span>(q1.size()&lt;i)<span class="comment">//保证q1的长度为i</span></span><br><span class="line">			{</span><br><span class="line">				q1.push(q2.top());</span><br><span class="line">				q2.pop();</span><br><span class="line">			}</span><br><span class="line">			<span class="keyword">while</span>(q1.size()&gt;i)</span><br><span class="line">			{</span><br><span class="line">				q2.push(q1.top());</span><br><span class="line">				q1.pop();</span><br><span class="line">			}</span><br><span class="line">			<span class="keyword">while</span>(!q1.empty()&amp;&amp;!q2.empty()&amp;&amp;q1.top()&gt;q2.top())<span class="comment">//保证q1的top更小</span></span><br><span class="line">			{</span><br><span class="line">				<span class="keyword">int</span> l=q1.top(),k=q2.top();</span><br><span class="line">				q1.pop();q2.pop();</span><br><span class="line">				q2.push(l);q1.push(k);</span><br><span class="line">			}</span><br><span class="line">			<span class="comment">//printf("i:%dj:%d %d\n",i,j,q1.top());</span></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">while</span>(q1.size()&lt;i)</span><br><span class="line">		{</span><br><span class="line">			q1.push(q2.top());</span><br><span class="line">			q2.pop();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">while</span>(q1.size()&gt;i)</span><br><span class="line">		{</span><br><span class="line">			q2.push(q1.top());</span><br><span class="line">			q1.pop();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">while</span>(!q1.empty()&amp;&amp;!q2.empty()&amp;&amp;q1.top()&gt;q2.top())</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> l=q1.top(),k=q2.top();</span><br><span class="line">			q1.pop();q2.pop();</span><br><span class="line">			q2.push(l);q1.push(k);</span><br><span class="line">		}</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,q1.top());</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> inf 0x7fffffff</span>
+priority_queue&lt;<span class="hljs-keyword">int</span>,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;,greater&lt;<span class="hljs-keyword">int</span>&gt; &gt; q2;<span class="hljs-comment">//小的在上头</span>
+priority_queue&lt;<span class="hljs-keyword">int</span>&gt; q1;<span class="hljs-comment">//大的在上头，大小控制为i </span>
+<span class="hljs-keyword">int</span> a[<span class="hljs-number">200009</span>],t[<span class="hljs-number">200009</span>];
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-comment">//freopen("h.in","r",stdin);</span>
+	<span class="hljs-keyword">int</span> n,m;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;m,&amp;n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[i]);
+	<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">int</span> x;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;x);
+		<span class="hljs-keyword">for</span>(;j&lt;=x;j++)
+		{
+			q1.push(a[j]);
+			<span class="hljs-keyword">while</span>(q1.size()&lt;i)<span class="hljs-comment">//保证q1的长度为i</span>
+			{
+				q1.push(q2.top());
+				q2.pop();
+			}
+			<span class="hljs-keyword">while</span>(q1.size()&gt;i)
+			{
+				q2.push(q1.top());
+				q1.pop();
+			}
+			<span class="hljs-keyword">while</span>(!q1.empty()&amp;&amp;!q2.empty()&amp;&amp;q1.top()&gt;q2.top())<span class="hljs-comment">//保证q1的top更小</span>
+			{
+				<span class="hljs-keyword">int</span> l=q1.top(),k=q2.top();
+				q1.pop();q2.pop();
+				q2.push(l);q1.push(k);
+			}
+			<span class="hljs-comment">//printf("i:%dj:%d %d\n",i,j,q1.top());</span>
+		}
+		<span class="hljs-keyword">while</span>(q1.size()&lt;i)
+		{
+			q1.push(q2.top());
+			q2.pop();
+		}
+		<span class="hljs-keyword">while</span>(q1.size()&gt;i)
+		{
+			q2.push(q1.top());
+			q1.pop();
+		}
+		<span class="hljs-keyword">while</span>(!q1.empty()&amp;&amp;!q2.empty()&amp;&amp;q1.top()&gt;q2.top())
+		{
+			<span class="hljs-keyword">int</span> l=q1.top(),k=q2.top();
+			q1.pop();q2.pop();
+			q2.push(l);q1.push(k);
+		}
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,q1.top());
+	}
+	
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

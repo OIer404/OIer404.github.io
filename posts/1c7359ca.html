@@ -40,7 +40,121 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 <p>否则区间长度+1，r+1</p>
 <p><s>双倍经验，双倍快乐</s></p>
 <a id="more"></a>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 500009</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>{</span></span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">int</span> rev;</span><br><span class="line">};</span><br><span class="line"><span class="built_in">vector</span>&lt;node&gt; e[maxn];</span><br><span class="line"><span class="keyword">int</span> S,T;</span><br><span class="line"><span class="keyword">int</span> k,m,n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sol[<span class="number">1009</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	e[x].push_back((node){y,z,e[y].size()});</span><br><span class="line">	e[y].push_back((node){x,<span class="number">0</span>,e[x].size()<span class="number">-1</span>});</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> d[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">memset</span>(d,<span class="number">-1</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	q.push(S);</span><br><span class="line">	d[S]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> now=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;e[now].size();i++)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> to=e[now][i].to;</span><br><span class="line">			<span class="keyword">if</span>(d[to]==<span class="number">-1</span>&amp;&amp;e[now][i].val)</span><br><span class="line">			{</span><br><span class="line">				d[to]=d[now]+<span class="number">1</span>;</span><br><span class="line">				q.push(to);</span><br><span class="line">				<span class="keyword">if</span>(to==T)<span class="keyword">return</span> <span class="number">1</span>; </span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> low)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span>(x==T||low==<span class="number">0</span>)<span class="keyword">return</span> low;</span><br><span class="line">	<span class="keyword">int</span> totflow=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;e[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=e[x][i].to;</span><br><span class="line">		<span class="keyword">int</span> val=e[x][i].val;</span><br><span class="line">		<span class="keyword">int</span> rev=e[x][i].rev;</span><br><span class="line">		<span class="keyword">if</span>(d[to]==d[x]+<span class="number">1</span>&amp;&amp;val)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">int</span> a=dfs(to,min(low,val));</span><br><span class="line">			e[x][i].val-=a;</span><br><span class="line">			e[to][rev].val+=a;</span><br><span class="line">			totflow+=a;</span><br><span class="line">			low-=a;</span><br><span class="line">			<span class="keyword">if</span>(low==<span class="number">0</span>)<span class="keyword">return</span> totflow;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(low)d[x]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> totflow;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="keyword">int</span> c[maxn];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1009</span>][<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n+b+<span class="number">4</span>;i++)e[i].clear();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		add(S,i,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=x;j&lt;=y;j++)</span><br><span class="line">		{</span><br><span class="line">			add(i,n+a[i][j],<span class="number">1</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=b;i++)add(n+i,T,c[i]);</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(bfs())ans+=dfs(S,inf);</span><br><span class="line">	<span class="keyword">return</span> ans==n;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;b);</span><br><span class="line">	S=n+b+<span class="number">2</span>,T=S+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=b;j++)</span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i][j]);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=b;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c[i]);</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> ans=inf;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=b;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">while</span>(!work(i,j)&amp;&amp;j&lt;=b)</span><br><span class="line">		{</span><br><span class="line">			j++;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(work(i,j))<span class="comment">//这里是防止j过了m跳出循环被错误记录 </span></span><br><span class="line">		{</span><br><span class="line">			ans=min(ans,j-i+<span class="number">1</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">//P2857 [USACO06FEB]Steady Cow Assignment G&amp;&amp;SP741 STEAD - Steady Cow Assignment</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 500009</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+	<span class="hljs-keyword">int</span> to;
+	<span class="hljs-keyword">int</span> val;
+	<span class="hljs-keyword">int</span> rev;
+};
+<span class="hljs-built_in">vector</span>&lt;node&gt; e[maxn];
+<span class="hljs-keyword">int</span> S,T;
+<span class="hljs-keyword">int</span> k,m,n;
+<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; sol[<span class="hljs-number">1009</span>];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> z)</span>
+</span>{
+	e[x].push_back((node){y,z,e[y].size()});
+	e[y].push_back((node){x,<span class="hljs-number">0</span>,e[x].size()<span class="hljs-number">-1</span>});
+}
+<span class="hljs-keyword">int</span> d[maxn];
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">bfs</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">-1</span>,<span class="hljs-keyword">sizeof</span>(d));
+	<span class="hljs-built_in">queue</span>&lt;<span class="hljs-keyword">int</span>&gt; q;
+	q.push(S);
+	d[S]=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(!q.empty())
+	{
+		<span class="hljs-keyword">int</span> now=q.front();
+		q.pop();
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;e[now].size();i++)
+		{
+			<span class="hljs-keyword">int</span> to=e[now][i].to;
+			<span class="hljs-keyword">if</span>(d[to]==<span class="hljs-number">-1</span>&amp;&amp;e[now][i].val)
+			{
+				d[to]=d[now]+<span class="hljs-number">1</span>;
+				q.push(to);
+				<span class="hljs-keyword">if</span>(to==T)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; 
+			}
+		}
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> low)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(x==T||low==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> low;
+	<span class="hljs-keyword">int</span> totflow=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;e[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=e[x][i].to;
+		<span class="hljs-keyword">int</span> val=e[x][i].val;
+		<span class="hljs-keyword">int</span> rev=e[x][i].rev;
+		<span class="hljs-keyword">if</span>(d[to]==d[x]+<span class="hljs-number">1</span>&amp;&amp;val)
+		{
+			<span class="hljs-keyword">int</span> a=dfs(to,min(low,val));
+			e[x][i].val-=a;
+			e[to][rev].val+=a;
+			totflow+=a;
+			low-=a;
+			<span class="hljs-keyword">if</span>(low==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> totflow;
+		}
+	}
+	<span class="hljs-keyword">if</span>(low)d[x]=<span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">return</span> totflow;
+}
+<span class="hljs-keyword">int</span> b;
+<span class="hljs-keyword">int</span> c[maxn];
+<span class="hljs-keyword">int</span> a[<span class="hljs-number">1009</span>][<span class="hljs-number">30</span>];
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n+b+<span class="hljs-number">4</span>;i++)e[i].clear();
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		add(S,i,<span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=x;j&lt;=y;j++)
+		{
+			add(i,n+a[i][j],<span class="hljs-number">1</span>);
+		}
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=b;i++)add(n+i,T,c[i]);
+	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(bfs())ans+=dfs(S,inf);
+	<span class="hljs-keyword">return</span> ans==n;
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;b);
+	S=n+b+<span class="hljs-number">2</span>,T=S+<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=b;j++)
+		{
+			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[i][j]);
+		}
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=b;i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;c[i]);
+	<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> ans=inf;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=b;i++)
+	{
+		<span class="hljs-keyword">while</span>(!work(i,j)&amp;&amp;j&lt;=b)
+		{
+			j++;
+		}
+		<span class="hljs-keyword">if</span>(work(i,j))<span class="hljs-comment">//这里是防止j过了m跳出循环被错误记录 </span>
+		{
+			ans=min(ans,j-i+<span class="hljs-number">1</span>);
+		}
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-comment">//P2857 [USACO06FEB]Steady Cow Assignment G&amp;&amp;SP741 STEAD - Steady Cow Assignment</span>
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

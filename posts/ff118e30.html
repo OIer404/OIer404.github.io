@@ -50,7 +50,104 @@ gtag('config', 'UA-175655264-1');</script><script data-ad-client="ca-pub-7464044
 </blockquote>
 <p>圆点赋值都为-1 这样可以在两端都有方点的时候减去重复计算的部分</p>
 <p>还可以在最后减去开始和结尾两个点 恰好算出答案</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200009</span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> low[maxn*<span class="number">2</span>],dfn[maxn*<span class="number">2</span>];</span><br><span class="line">ll cnt=<span class="number">0</span>,num=<span class="number">0</span>,dfk=<span class="number">0</span>;</span><br><span class="line">ll ans=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son[maxn*<span class="number">2</span>],t[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> stk[maxn],top=<span class="number">0</span>;</span><br><span class="line">ll val[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span><span class="comment">//构建圆方树，赋值 </span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	dfn[x]=low[x]=++dfk;</span><br><span class="line">	stk[++top]=x;</span><br><span class="line">	num++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;son[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=son[x][i];</span><br><span class="line">		<span class="keyword">if</span>(!dfn[to])</span><br><span class="line">		{</span><br><span class="line">			tarjan(to);</span><br><span class="line">			low[x]=min(low[x],low[to]);</span><br><span class="line">			<span class="keyword">if</span>(low[to]==dfn[x])</span><br><span class="line">			{</span><br><span class="line">				<span class="comment">//出现了一坨点双 </span></span><br><span class="line">				cnt++;</span><br><span class="line">				val[cnt]=<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x != to; --top) {</span><br><span class="line">					x = stk[top];</span><br><span class="line">					t[cnt].push_back(x);</span><br><span class="line">					t[x].push_back(cnt);</span><br><span class="line">					++val[cnt];</span><br><span class="line">				}</span><br><span class="line">				val[cnt]++;</span><br><span class="line">				<span class="keyword">int</span> k=x;</span><br><span class="line">				t[k].push_back(cnt);</span><br><span class="line">				t[cnt].push_back(k);</span><br><span class="line">			}</span><br><span class="line">		}<span class="keyword">else</span></span><br><span class="line">		{</span><br><span class="line">			low[x]=min(low[x],dfn[to]);</span><br><span class="line">		}</span><br><span class="line">	<span class="comment">//	cout&lt;&lt;x&lt;&lt;" "&lt;&lt;dfn[x]&lt;&lt;" "&lt;&lt;low[x]&lt;&lt;endl;</span></span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">int</span> size[maxn*<span class="number">2</span>]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span><span class="comment">//从x出发 </span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">//num是圆点 </span></span><br><span class="line">	<span class="comment">//size是这个子树里的圆点 </span></span><br><span class="line">	size[x]=(x&lt;=n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t[x].size();i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> to=t[x][i];</span><br><span class="line">		<span class="keyword">if</span>(to==fa)<span class="keyword">continue</span>;</span><br><span class="line">		dfs(to,x);</span><br><span class="line">		ans+=<span class="number">2l</span>l*val[x]*size[x]*size[to];</span><br><span class="line">		size[x]+=size[to];</span><br><span class="line">	}</span><br><span class="line">	ans+=<span class="number">2l</span>l*val[x]*size[x]*(num-size[x]);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	cnt=n;</span><br><span class="line">	<span class="built_in">memset</span>(val,<span class="number">-1</span>,<span class="keyword">sizeof</span>(val));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		son[x].push_back(y);</span><br><span class="line">		son[y].push_back(x);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span>(!dfn[i])</span><br><span class="line">		{</span><br><span class="line">			num=<span class="number">0</span>;</span><br><span class="line">			tarjan(i);</span><br><span class="line">			top=<span class="number">0</span>;<span class="comment">//根节点不会出栈 </span></span><br><span class="line">			dfs(i,<span class="number">0</span>);</span><br><span class="line">			</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="highlight"><code class="cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">0x7fffffff</span>;
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> maxn 200009</span>
+<span class="hljs-keyword">int</span> n,m;
+<span class="hljs-keyword">int</span> low[maxn*<span class="hljs-number">2</span>],dfn[maxn*<span class="hljs-number">2</span>];
+ll cnt=<span class="hljs-number">0</span>,num=<span class="hljs-number">0</span>,dfk=<span class="hljs-number">0</span>;
+ll ans=<span class="hljs-number">0</span>;
+<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; son[maxn*<span class="hljs-number">2</span>],t[maxn*<span class="hljs-number">2</span>];
+<span class="hljs-keyword">int</span> stk[maxn],top=<span class="hljs-number">0</span>;
+ll val[maxn*<span class="hljs-number">2</span>];
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span><span class="hljs-comment">//构建圆方树，赋值 </span>
+</span>{
+	dfn[x]=low[x]=++dfk;
+	stk[++top]=x;
+	num++;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;son[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=son[x][i];
+		<span class="hljs-keyword">if</span>(!dfn[to])
+		{
+			tarjan(to);
+			low[x]=min(low[x],low[to]);
+			<span class="hljs-keyword">if</span>(low[to]==dfn[x])
+			{
+				<span class="hljs-comment">//出现了一坨点双 </span>
+				cnt++;
+				val[cnt]=<span class="hljs-number">0</span>;
+				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>; x != to; --top) {
+					x = stk[top];
+					t[cnt].push_back(x);
+					t[x].push_back(cnt);
+					++val[cnt];
+				}
+				val[cnt]++;
+				<span class="hljs-keyword">int</span> k=x;
+				t[k].push_back(cnt);
+				t[cnt].push_back(k);
+			}
+		}<span class="hljs-keyword">else</span>
+		{
+			low[x]=min(low[x],dfn[to]);
+		}
+	<span class="hljs-comment">//	cout&lt;&lt;x&lt;&lt;" "&lt;&lt;dfn[x]&lt;&lt;" "&lt;&lt;low[x]&lt;&lt;endl;</span>
+	}
+}
+<span class="hljs-keyword">int</span> size[maxn*<span class="hljs-number">2</span>]; 
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> fa)</span><span class="hljs-comment">//从x出发 </span>
+</span>{
+	<span class="hljs-comment">//num是圆点 </span>
+	<span class="hljs-comment">//size是这个子树里的圆点 </span>
+	size[x]=(x&lt;=n);
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;t[x].size();i++)
+	{
+		<span class="hljs-keyword">int</span> to=t[x][i];
+		<span class="hljs-keyword">if</span>(to==fa)<span class="hljs-keyword">continue</span>;
+		dfs(to,x);
+		ans+=<span class="hljs-number">2l</span>l*val[x]*size[x]*size[to];
+		size[x]+=size[to];
+	}
+	ans+=<span class="hljs-number">2l</span>l*val[x]*size[x]*(num-size[x]);
+}
+<span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m);
+	cnt=n;
+	<span class="hljs-built_in">memset</span>(val,<span class="hljs-number">-1</span>,<span class="hljs-keyword">sizeof</span>(val));
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)
+	{
+		<span class="hljs-keyword">int</span> x,y;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;x,&amp;y);
+		son[x].push_back(y);
+		son[y].push_back(x);
+	}
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+	{
+		<span class="hljs-keyword">if</span>(!dfn[i])
+		{
+			num=<span class="hljs-number">0</span>;
+			tarjan(i);
+			top=<span class="hljs-number">0</span>;<span class="hljs-comment">//根节点不会出栈 </span>
+			dfs(i,<span class="hljs-number">0</span>);
+			
+		}
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
